@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba7889d0dbee65428c7bde53c1865d1, type: 3}
+  m_Name: Profession_AnalyticsObj
+  m_EditorClassIdentifier: Assembly-CSharp::ProfessionObjectData
+  objectName: 'Profession_Analytics '
+  professionType: 3
+  professionData: {fileID: 11400000, guid: a022d2c1f856a4b45ba0361760a82cb4, type: 2}
+  prefab: {fileID: 1336773941178181807, guid: e643fc1b79e7da34bb624e5199bb321a, type: 3}
+  icon: {fileID: 0}
+  directionColor: {r: 0.6431373, g: 1, b: 0.2901961, a: 1}
+  thoughtLines:
+  - "\u041D\u0443\u0436\u043D\u0430 \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0430"
+  spawnWeight: 1
+  debugLogOnPickup: 0

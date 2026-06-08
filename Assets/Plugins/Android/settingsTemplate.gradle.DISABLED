@@ -1,0 +1,34 @@
+pluginManagement {
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+include ':launcher'
+include ':unityLibrary'
+**INCLUDES**
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        google()
+        mavenCentral()
+// Android Resolver Repos Start
+        def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
+        maven {
+            url (unityProjectPath + "/Assets/GeneratedLocalRepo/Firebase/m2repository") // Assets/Firebase/Editor/AppDependencies.xml:22, Assets/Firebase/Editor/FirestoreDependencies.xml:20
+        }
+        maven {
+            url "https://artifactory-external.vkpartner.ru/artifactory/maven-rustore-exposed" // Assets/RustoreSDK/Editor/Common/CoreClientDependencies.xml:7, Assets/RustoreSDK/Editor/InstallReferrer/InstallReferrerDependencies.xml:7, Assets/RustoreSDK/Editor/PayClient/PayClientDependencies.xml:7
+        }
+        mavenLocal()
+// Android Resolver Repos End
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
+    }
+}

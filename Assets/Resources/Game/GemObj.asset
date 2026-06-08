@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d3cacc60c88744da3b4a9635dec158, type: 3}
+  m_Name: GemObj
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleData
+  id: NewCollectible_-1
+  displayName: Gem
+  description: 
+  prefab: {fileID: 8591668209144185215, guid: 41ceba60615d4f54194eefa1aaadccda, type: 3}
+  icon: {fileID: -1750502926, guid: e7f824a4f0a41f445936452fbd1ea8b3, type: 3}
+  isGem: 1
+  category: 0
+  spawnWeight: 3
+  PrimaryStatType: 0
+  PrimaryValue: 0
+  SecondaryStatType: 0
+  SecondaryValue: 0
+  thoughtText: 
+  triggersSlowMo: 0
+  isRare: 0
+  devNotes: 

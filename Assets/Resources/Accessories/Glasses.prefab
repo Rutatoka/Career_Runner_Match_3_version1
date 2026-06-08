@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &972750241006392623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7874873901286253354}
+  - component: {fileID: 2170219571071681164}
+  m_Layer: 0
+  m_Name: Glasses
+  m_TagString: Accessory
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7874873901286253354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972750241006392623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.13871281, y: -0.025805715, z: 0.02106907, w: 0.9897722}
+  m_LocalPosition: {x: -0.03, y: 0.016, z: 0.093}
+  m_LocalScale: {x: 12.892779, y: 8.595446, z: 12.163}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4223783522422120150}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 16.002, y: 357.303, z: 2.06}
+--- !u!114 &2170219571071681164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972750241006392623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fdbdda5266f242b71729826d5dc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AccessoryAdjuster
+  maleScale: {x: 13.00436, y: 10.11512, z: 14.31342}
+  malePosition: {x: -0.02904645, y: 0.03562057, z: 0.07634028}
+  maleRotation: {x: 20.569, y: 361.691, z: 1.431}
+  femaleScale: {x: 0.1566461, y: 0.1559379, z: 0.1897585}
+  femalePosition: {x: 0.00004131214, y: 0.001491082, z: 0.00004434809}
+  femaleRotation: {x: 3.963, y: 270.826, z: 0.553}
+--- !u!1001 &4402090245640894781
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7874873901286253354}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+      propertyPath: m_Name
+      value: Glasses
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+--- !u!4 &4223783522422120150 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74792a8f904536f4089fd7f4723d27e0, type: 3}
+  m_PrefabInstance: {fileID: 4402090245640894781}
+  m_PrefabAsset: {fileID: 0}

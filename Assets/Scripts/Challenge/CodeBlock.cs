@@ -210,13 +210,13 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         // ВАЖНО: Возвращаем блок в Canvas для свободного перемещения
         transform.SetParent(originalParent, true);
-
+        if (blockImage != null)
+            blockImage.color = normalColor;
         // Плавно возвращаем на исходную позицию
         StartCoroutine(SmoothReturnToStart());
 
         // Возвращаем цвет блока
-        if (blockImage != null)
-            blockImage.color = normalColor;
+      
 
         // Включаем возможность перетаскивания
         canvasGroup.blocksRaycasts = true;

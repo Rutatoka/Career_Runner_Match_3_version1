@@ -468,11 +468,11 @@ MonoBehaviour:
   requiredBlockName: CodeBlock_Loop
   magnetRange: 150
   magnetStrength: 15
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  magnetColor: {r: 0.5, g: 0.8, b: 1, a: 1}
-  correctColor: {r: 0, g: 1, b: 0, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6666667}
+  highlightColor: {r: 1, g: 0.92156863, b: 0.4745098, a: 0.65882355}
+  magnetColor: {r: 0.5, g: 0.8, b: 0.7019608, a: 0.6862745}
+  correctColor: {r: 0, g: 1, b: 0.68235296, a: 0.7607843}
+  wrongColor: {r: 1, g: 0.34117648, b: 0.4627451, a: 0.6862745}
 --- !u!114 &322120371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.22745098}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -962,7 +962,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragColor: {r: 1, g: 1, b: 1, a: 0.8}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6745098}
 --- !u!114 &577844467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1079,7 +1079,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragColor: {r: 1, g: 1, b: 1, a: 0.8}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6745098}
 --- !u!114 &582523612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1196,7 +1196,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragColor: {r: 0.5854396, g: 0.8679245, b: 0.8527004, a: 0.8}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6745098}
 --- !u!114 &678337310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1955,7 +1955,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragColor: {r: 1, g: 1, b: 1, a: 0.8}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6745098}
 --- !u!114 &918262758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,7 +1969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2072,7 +2072,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragColor: {r: 1, g: 1, b: 1, a: 0.8}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6745098}
 --- !u!114 &1084317712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2380,11 +2380,11 @@ MonoBehaviour:
   requiredBlockName: CodeBlock_IfElse
   magnetRange: 150
   magnetStrength: 15
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  magnetColor: {r: 0.5, g: 0.8, b: 1, a: 1}
-  correctColor: {r: 0, g: 1, b: 0, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6666667}
+  highlightColor: {r: 1, g: 0.92156863, b: 0.4745098, a: 0.65882355}
+  magnetColor: {r: 0.5, g: 0.8, b: 0.7019608, a: 0.6862745}
+  correctColor: {r: 0, g: 1, b: 0.68235296, a: 0.7607843}
+  wrongColor: {r: 1, g: 0.34117648, b: 0.4627451, a: 0.6862745}
 --- !u!114 &1339674001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.22745098}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2850,6 +2850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427617810}
   - component: {fileID: 1427617809}
+  - component: {fileID: 1427617811}
   m_Layer: 0
   m_Name: ChallengeITController
   m_TagString: Untagged
@@ -2895,6 +2896,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1427617811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427617807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17144799ff0e672428f123a7fb45455a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITBackgroundController
+  targetCanvas: {fileID: 915305796}
+  backgroundColor: {r: 0.02, g: 0.04, b: 0.02, a: 1}
+  vignetteColor: {r: 0, g: 0.02, b: 0, a: 0.6}
+  farColumnCount: 14
+  midColumnCount: 10
+  nearColumnCount: 6
+  farSpeed: 180
+  midSpeed: 110
+  nearSpeed: 60
+  farFontSize: 10
+  midFontSize: 16
+  nearFontSize: 26
 --- !u!1 &1453294744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,11 +3390,11 @@ MonoBehaviour:
   requiredBlockName: CodeBlock_Function
   magnetRange: 150
   magnetStrength: 15
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  magnetColor: {r: 0.5, g: 0.8, b: 1, a: 1}
-  correctColor: {r: 0, g: 1, b: 0, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6666667}
+  highlightColor: {r: 1, g: 0.92156863, b: 0.4745098, a: 0.65882355}
+  magnetColor: {r: 0.5, g: 0.8, b: 0.7019608, a: 0.6862745}
+  correctColor: {r: 0, g: 1, b: 0.68235296, a: 0.7607843}
+  wrongColor: {r: 1, g: 0.34117648, b: 0.4627451, a: 0.6862745}
 --- !u!114 &1759309116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3383,7 +3408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.22745098}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3625,7 +3650,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragColor: {r: 1, g: 1, b: 1, a: 0.8}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 0.6745098}
 --- !u!114 &1801854096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3639,7 +3664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

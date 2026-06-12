@@ -73,3 +73,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+bin/run7-0.1.0-v1-IL2CPP.symbols.zip
+bin/run8-0.1.0-v1-IL2CPP.symbols.zip
+bin/run9-0.1.0-v1-IL2CPP.symbols.zip
+bin/run10-0.1.0-v1-IL2CPP.symbols.zip
+bin/run6_BackUpThisFolder_ButDontShipItWithYourGame/Managed/System.dll

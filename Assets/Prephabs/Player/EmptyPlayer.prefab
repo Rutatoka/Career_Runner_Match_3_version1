@@ -138,17 +138,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968242339682011799}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.0052886065, y: 0.060206987, z: 0.08734351, w: 0.99434316}
+  m_LocalPosition: {x: 0, y: 0, z: -5.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8627067674943804979}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 6.93, z: 10.04}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 4.54, y: 0.5173}
+  m_AnchoredPosition: {x: 0.3, y: 2.96}
+  m_SizeDelta: {x: 1.5, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1693597909367019462
 MeshRenderer:
@@ -246,11 +246,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3.25
+  m_fontSize: 1.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 3
+  m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -376,10 +376,8 @@ MonoBehaviour:
   idleStateName: Idle
   runStateName: Run
   bodyContainer: {fileID: 5104731791726385856}
-  maleModelPrefab: {fileID: 6391998693345478036, guid: 818d846093a7bdf4297f300b69da7ae7,
-    type: 3}
-  femaleModelPrefab: {fileID: 1321672995922695284, guid: be3f73efc2dfc5e41a2b4b891e6d89b5,
-    type: 3}
+  maleModelPrefab: {fileID: 6391998693345478036, guid: 818d846093a7bdf4297f300b69da7ae7, type: 3}
+  femaleModelPrefab: {fileID: 1321672995922695284, guid: be3f73efc2dfc5e41a2b4b891e6d89b5, type: 3}
   femaleTorsoMaterial: {fileID: 2100000, guid: fddea3d589d5ecb49a130461b5dfb3ee, type: 2}
   femalePantsMaterial: {fileID: 2100000, guid: 529e9d243f6a7bb4e8f7cdb53ce4975e, type: 2}
   femaleShoesMaterial: {fileID: 2100000, guid: 0e47ed81d83f358478bdf2827429e59a, type: 2}

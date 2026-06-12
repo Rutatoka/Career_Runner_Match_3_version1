@@ -815,7 +815,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.05142651, g: 0.084905684, b: 0.042052343, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1981,6 +1981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946180036}
   - component: {fileID: 946180035}
+  - component: {fileID: 946180037}
   m_Layer: 0
   m_Name: ChallengeAnalystController
   m_TagString: Untagged
@@ -2120,6 +2121,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946180037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946180034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d38f5ed201b79242ab1a049e7e5f1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnalyticsBackgroundController
+  targetCanvas: {fileID: 30539805}
+  backgroundColor: {r: 0.03, g: 0.07, b: 0.05, a: 1}
+  gridColor: {r: 0, g: 0.5, b: 0.3, a: 0.15}
+  symbolColor: {r: 0, g: 0.9, b: 0.5, a: 0.6}
+  glowColor: {r: 0, g: 0.6, b: 0.35, a: 0.08}
+  gridColumns: 5
+  gridRows: 10
+  symbolCount: 25
+  symbolSpeed: 80
+  minFontSize: 15
+  maxFontSize: 55
 --- !u!1 &1018430944
 GameObject:
   m_ObjectHideFlags: 0

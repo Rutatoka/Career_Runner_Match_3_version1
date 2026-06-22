@@ -52,7 +52,12 @@ public class Gem : MonoBehaviour
         if (other.CompareTag("Player"))
             Collect();
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!collectOnTrigger || collected) return;
+        if (other.CompareTag("Player"))
+            Collect();
+    }
     public void OnSpawned()
     {
         collected = false;
@@ -71,6 +76,7 @@ public class Gem : MonoBehaviour
         if (HappinessSystem.Instance != null)
         {
             HappinessSystem.Instance.Add(happinessValue);
+            Debug.Log("gem dobavlen. collect in gem");
         }
         else
         {

@@ -1,9 +1,0 @@
-<dependencies>
-  <androidPackages>
-    <androidPackage spec="ru.rustore.sdk:pay:10.3.1">
-      <repositories>
-        <repository>https://artifactory-external.vkpartner.ru/artifactory/maven-rustore-exposed</repository>
-      </repositories>
-    </androidPackage>
-  </androidPackages>
-</dependencies>

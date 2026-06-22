@@ -9,7 +9,6 @@ public class MenuUIController : MonoBehaviour
     public Button buttonStart;
     public Button buttonExit;
     public Button buttonMyPath;
-
     public CharacterModelController modelController;
 
     private void Start()
@@ -18,7 +17,6 @@ public class MenuUIController : MonoBehaviour
         buttonStart.onClick.AddListener(() => GameManager.Instance.StartGame());
         buttonExit.onClick.AddListener(() => GameManager.Instance.ExitGame());
         buttonMyPath.onClick.AddListener(() => GameManager.Instance.GoToMyPath());
-
         // Проверяем условия для показа кнопки
         UpdateMyPathButton();
     }

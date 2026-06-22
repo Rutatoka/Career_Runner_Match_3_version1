@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+
 public class HappinessSystem : MonoBehaviour
 {
     public static HappinessSystem Instance { get; private set; }
-
     public event Action<int> OnGemsChanged;
 
     [Header("UI")]
@@ -15,9 +15,10 @@ public class HappinessSystem : MonoBehaviour
 
     [Header("Settings")]
     public int max = 100;
-    public int gems;
 
-    public int CurrentValue { get; private set; } = 0;
+    // Больше не храним собственную копию баланса —
+    // SaveSystem всегда единственный источник правды
+    public int CurrentValue => SaveSystem.GetGems();
 
     private void Awake()
     {
@@ -32,74 +33,47 @@ public class HappinessSystem : MonoBehaviour
 
     private void Start()
     {
-        if (SaveSystemAvailable())
-            CurrentValue = Mathf.Clamp(SaveSystem.GetGems(), 0, max);
-        else
-            CurrentValue = Mathf.Clamp(PlayerPrefs.GetInt("Gems", 0), 0, max);
-
         UpdateUI();
     }
-
 
     private void TryFindUI()
     {
         if (slider == null)
             slider = FindObjectOfType<Slider>();
-       // Debug.Log("FOUND SLIDER: " + slider.name + " in " + slider.transform.parent.name);
 
         var canvas = GameObject.Find("Canvas");
         if (canvas != null)
         {
             numGem = canvas.transform.Find("Happiness/NumGemTxt")?.GetComponent<TMP_Text>();
         }
-
         UpdateUI();
     }
 
+    // OnDestroy больше ничего не пишет — нет своего состояния, нечего сохранять
     private void OnDestroy()
     {
-        if (SaveSystemAvailable())
-        {
-            int delta = CurrentValue - SaveSystem.GetGems();
-            if (delta > 0) SaveSystem.AddGems(delta);
-            else if (delta < 0)
-            {
-                int toSpend = -delta;
-                SaveSystem.SpendGems(toSpend);
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("Gems", CurrentValue);
-            PlayerPrefs.Save();
-        }
-
         if (Instance == this) Instance = null;
     }
 
     public void Add(int amount)
     {
+        Debug.Log($" ADD in hS Attempting to change gems by {amount}. Current gems: {SaveSystem.GetGems()}");
         if (amount == 0) return;
-        gems = CurrentValue;
-        int newValue = Mathf.Clamp(CurrentValue + amount, 0, max);
-        if (newValue == CurrentValue) return;
 
-        CurrentValue = newValue;
-
-        if (SaveSystemAvailable())
-        {
-            int delta = CurrentValue - SaveSystem.GetGems();
-            if (delta > 0) SaveSystem.AddGems(delta);
-            else if (delta < 0) SaveSystem.SpendGems(-delta);
-        }
+        if (amount > 0)
+            SaveSystem.AddGems(amount);
         else
-        {
-            PlayerPrefs.SetInt("Gems", CurrentValue);
-            PlayerPrefs.Save();
-        }
+            SaveSystem.SpendGems(-amount);
 
+        // Если UI ещё не найден — пытаемся найти прямо сейчас
+        if (numGem == null || slider == null)
+            TryFindUI();
+
+
+        int clamped = Mathf.Clamp(SaveSystem.GetGems(), 0, max);
+        Debug.Log($"Gems changed by {amount}, new value: {clamped}");
         UpdateUI();
-        OnGemsChanged?.Invoke(CurrentValue);
+        OnGemsChanged?.Invoke(clamped);
         HeaderFooterManager.Instance?.Refresh();
     }
     private void OnEnable()
@@ -114,36 +88,35 @@ public class HappinessSystem : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Ждём один кадр чтобы Canvas в новой сцене точно успел построиться
+        StartCoroutine(TryFindUIDelayed());
+    }
+
+    private System.Collections.IEnumerator TryFindUIDelayed()
+    {
+        yield return null;
+        yield return null;
         TryFindUI();
     }
     public void Set(int value)
     {
-        value = Mathf.Clamp(value, 0, max);
-        int delta = value - CurrentValue;
+        int current = SaveSystem.GetGems();
+        int delta = value - current;
         if (delta == 0) return;
         Add(delta);
     }
 
     private void UpdateUI()
     {
+        int value = Mathf.Clamp(SaveSystem.GetGems(), 0, max);
+
         if (numGem != null)
-            numGem.text = CurrentValue.ToString();
+            numGem.text = value.ToString();
 
         if (slider != null)
         {
             slider.maxValue = max;
-            slider.value = CurrentValue;
+            slider.value = value;
         }
-    }
-
-
-    private bool SaveSystemAvailable()
-    {
-        try
-        {
-            var _ = SaveSystem.GetGems();
-            return true;
-        }
-        catch { return false; }
     }
 }

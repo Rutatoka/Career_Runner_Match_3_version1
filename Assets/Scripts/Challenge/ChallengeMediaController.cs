@@ -110,6 +110,7 @@ public class ChallengeMediaController : MonoBehaviour
     public void OnNoteHit(int lane, float accuracyDistance)
     {
         if (ended) return;
+
         string rating;
         int points;
 
@@ -134,11 +135,47 @@ public class ChallengeMediaController : MonoBehaviour
         notesHit++;
         score += points * (1 + combo / 10);
 
-        // Ёффект на зоне
         if (lane < hitZones.Count && hitZones[lane] != null)
             hitZones[lane].PlayHitFeedback(rating);
 
-        ShowFeedback(rating, rating == "Perfect" ? Color.green : (rating == "Good" ? Color.yellow : Color.red));
+        ShowFeedback(
+            rating,
+            rating == "Perfect" ? Color.green
+            : rating == "Good" ? Color.yellow
+            : Color.red);
+
+        // ƒќЅј¬№: берЄм позицию HitZone в координатах Canvas
+        Vector2 ringPos = GetHitZoneCanvasPosition(lane);
+        MediaBackgroundController.Instance?.OnHit(lane, rating, ringPos);
+    }
+
+    // ƒќЅј¬№ новый приватный метод в ChallengeMediaController:
+    private Vector2 GetHitZoneCanvasPosition(int lane)
+    {
+        if (lane >= hitZones.Count || hitZones[lane] == null)
+            return Vector2.zero;
+
+        RectTransform hitRect = hitZones[lane].GetComponent<RectTransform>();
+        if (hitRect == null) return Vector2.zero;
+
+        if (parentCanvas == null) return Vector2.zero;
+
+        RectTransform canvasRect = parentCanvas.GetComponent<RectTransform>();
+        if (canvasRect == null) return Vector2.zero;
+
+        // ѕереводим world position HitZone в локальные координаты Canvas
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(
+            parentCanvas.worldCamera,
+            hitRect.position);
+
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            screenPoint,
+            parentCanvas.worldCamera,
+            out localPoint);
+
+        return localPoint;
     }
 
     public void OnNoteMiss(int lane)
@@ -147,11 +184,13 @@ public class ChallengeMediaController : MonoBehaviour
         combo = 0;
         notesMissed++;
 
-        // Ёффект промаха на зоне
         if (lane < hitZones.Count && hitZones[lane] != null)
             hitZones[lane].PlayMissFeedback();
 
         ShowFeedback("Miss", Color.gray);
+
+        // Miss Ч только бары, без кольца
+        MediaBackgroundController.Instance?.OnMiss(lane);
     }
 
     /// <summary>

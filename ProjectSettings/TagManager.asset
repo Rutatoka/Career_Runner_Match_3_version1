@@ -10,6 +10,7 @@ TagManager:
   - BackToMenuBtn
   - Accessory
   - Appearance
+  - UI_Main
   layers:
   - Default
   - TransparentFX

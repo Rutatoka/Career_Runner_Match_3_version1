@@ -61,11 +61,11 @@ public class PortalTransitionController : MonoBehaviour
 
     private void ResetTransitionFlag(Scene scene, LoadSceneMode mode)
     {
-         Debug.Log($"SCENE LOADED {scene.name}");
+       //  Debug.Log($"SCENE LOADED {scene.name}");
         isTransitioning = false;
         if (activeTransition != null)
         {
-            Debug.Log("STOPPING TRANSITION");
+          //  Debug.Log("STOPPING TRANSITION");
             StopCoroutine(activeTransition);
             activeTransition = null;
         }

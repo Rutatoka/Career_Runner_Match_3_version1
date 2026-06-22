@@ -13,6 +13,7 @@ public static class SaveSystem
     [Serializable]
     public class SaveData
     {
+        public bool tutorialShown = false;
         public int totalRuns;
      //   public PreferenceData preferenceData;
         public int[] objectsCollected;
@@ -71,7 +72,19 @@ public static class SaveSystem
             }
         }
     }
+    public static bool IsTutorialShown()
+    {
+        Load();
+        return cache.tutorialShown;
+    }
 
+    public static void SetTutorialShown()
+    {
+        Load();
+        cache.tutorialShown = true;
+        Save();
+        Debug.Log("SaveSystem: Tutorial marked as shown."+ cache.tutorialShown);
+    }
     public static string ExportJson() { if (!loaded) Load(); return JsonUtility.ToJson(cache, true); }
     public static void ClearSave() { lock (fileLock) { cache = new SaveData(); loaded = true; try { if (File.Exists(SaveFilePath)) File.Delete(SaveFilePath); } catch (Exception e) { Debug.LogError($"SaveSystem.ClearSave: {e}"); } } }
 

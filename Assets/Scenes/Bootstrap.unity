@@ -453,7 +453,6 @@ MonoBehaviour:
   slider: {fileID: 0}
   numGem: {fileID: 0}
   max: 1000
-  gems: 0
 --- !u!4 &1039593370
 Transform:
   m_ObjectHideFlags: 0
@@ -711,6 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eda1a835cc62214cbf1252e64849231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialPrefab: {fileID: 6412828154028307117, guid: 097324fd817b3bb4c850f7f31f7578a0, type: 3}
   professions:
   - {fileID: 11400000, guid: a022d2c1f856a4b45ba0361760a82cb4, type: 2}
   - {fileID: 11400000, guid: fcb73a1c067da1242aba2ab2c191b0ee, type: 2}

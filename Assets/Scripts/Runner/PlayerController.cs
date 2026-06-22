@@ -117,22 +117,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other == null) return;
 
+        // Сбор гема теперь только через Gem.OnTriggerStay —
+        // убираем дублирующий путь чтобы не было гонки между
+        // OnTriggerEnter (отсюда) и OnTriggerStay (из Gem)
+        // Оставляем только событие для других систем (например, статистики)
         if (other.CompareTag("Gem"))
         {
-            var gem = other.GetComponent<Gem>();
-            if (gem != null)
-            {
-                gem.Collect();
-                OnCollectedGem?.Invoke(other.gameObject);
-                return;
-            }
-
-            var g = other.GetComponentInChildren<Gem>();
-            if (g != null)
-            {
-                g.Collect();
-                OnCollectedGem?.Invoke(other.gameObject);
-            }
+            OnCollectedGem?.Invoke(other.gameObject);
         }
     }
     public void ApplyBoost(float multiplier, float duration)

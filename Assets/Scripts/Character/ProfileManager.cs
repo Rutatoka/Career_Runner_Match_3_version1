@@ -22,7 +22,7 @@ public class ProfileManager : MonoBehaviour
     public GameObject itemPrefab;
 
     [Header("Buttons")]
-    public Button saveButton;
+   // public Button saveButton;
     public Button genderMaleButton;
     public Button genderFemaleButton;
 
@@ -40,7 +40,7 @@ public class ProfileManager : MonoBehaviour
         lookTab.onClick.AddListener(() => SwitchTab(2));
 
         // Кнопка сохранения
-        saveButton.onClick.AddListener(SaveProfile);
+    //    saveButton.onClick.AddListener(SaveProfile);
 
         // Кнопки пола
         genderMaleButton.onClick.AddListener(() => SetGender(0));

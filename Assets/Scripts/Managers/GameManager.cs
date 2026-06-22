@@ -17,6 +17,9 @@ public class CharacterData
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Tutorial")]
+    public GameObject tutorialPrefab;
+    private bool tutorialAlreadyTriggeredThisSession = false;
     public static GameManager Instance { get; private set; }
 
     public PlayerStats PlayerStats { get; private set; }
@@ -31,10 +34,11 @@ public class GameManager : MonoBehaviour
     public bool IsPaused { get; private set; }
 
     public CharacterData characterData = new CharacterData();
-
+    private bool tutorialIsRunning;
+    private bool tutorialWasEverStartedThisSession;
     private void Awake()
     {
-        if (Instance != null)
+        Debug.Log($"GM Awake: {GetInstanceID()} scene: {gameObject.scene.name}"); if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -51,13 +55,51 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GoToMenu();
+
+        
+    }
+    private void OnDestroy()
+    {
+      //  Debug.Log($"GM DESTROYED: {GetInstanceID()}");
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private bool tutorialShownForThisMenuLoad;
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"[SceneLoaded] {scene.name} | tutorialWasEverStartedThisSession={tutorialWasEverStartedThisSession} | tutorialIsRunning={tutorialIsRunning} | Instance={GetInstanceID()}");
+
+        // Пропускаем ВСЕ сцены кроме MainMenu, и плевать на логи
+        if (scene.name != "MainMenu")
+        {
+            Debug.Log($"[SceneLoaded] Ignoring scene {scene.name} (not MainMenu)");
+            return;
+        }
+
+        // Если туториал уже показывается — НЕ ТРОГАЕМ
+        if (tutorialIsRunning)
+        {
+            Debug.Log("[SceneLoaded] Tutorial is already running, not calling TryShowTutorial again");
+            return;
+        }
+
+        Debug.Log("[Tutorial] TryShowTutorial CALLED");
+        TryShowTutorial();
+    }
     public void GoToMenu()
     {
         State = GameState.Menu;
         SceneManager.LoadScene("MainMenu");
+
         HeaderFooterManager.Instance?.UpdateUI();
+      //  Invoke(nameof(TryShowTutorial), 0.2f);
     }
     public void GoToMyPath()
     {
@@ -232,6 +274,111 @@ public class GameManager : MonoBehaviour
         SaveSystem.SetCharacter(characterData);
 
         Debug.Log("CharacterData saved.");
+    }
+    private void TryShowTutorial()
+    {
+        Debug.Log($"[TryShowTutorial] tutorialWasEverStartedThisSession={tutorialWasEverStartedThisSession} tutorialIsRunning={tutorialIsRunning} SaveSystem.IsTutorialShown={SaveSystem.IsTutorialShown()} TutorialManager.Instance={(TutorialManager.Instance != null ? "EXISTS" : "null")}");
+
+        if (tutorialWasEverStartedThisSession)
+        {
+            Debug.Log("[Tutorial] Already triggered this session. Skipping.");
+            return;
+        }
+
+        if (tutorialIsRunning)
+        {
+            Debug.Log("[Tutorial] Already running. Skipping.");
+            return;
+        }
+
+        if (SaveSystem.IsTutorialShown())
+        {
+            tutorialWasEverStartedThisSession = true;
+            Debug.Log("[Tutorial] Save says tutorial already shown. Marking session flag.");
+            return;
+        }
+
+        tutorialWasEverStartedThisSession = true;
+        tutorialIsRunning = true;
+        Debug.Log("[Tutorial] Showing tutorial for the first time EVER.");
+        ShowTutorialThenMenu();
+    }
+    public void ShowTutorialThenMenu()
+    {
+        if (tutorialPrefab == null)
+        {
+            GoToMenu();
+            return;
+        }
+
+        Canvas targetCanvas = null;
+
+        // Ищем канвас с тегом UI_Main (как в ShowTutorialCompact)
+        Canvas[] canvases = FindObjectsOfType<Canvas>();
+        foreach (var c in canvases)
+        {
+            if (c.CompareTag("UI_Main"))
+            {
+                targetCanvas = c;
+                break;
+            }
+        }
+
+        // Если не нашли — создаём без родителя, TutorialManager сам разберётся
+        GameObject obj;
+        if (targetCanvas != null)
+        {
+            obj = Instantiate(tutorialPrefab, targetCanvas.transform);
+        }
+        else
+        {
+            Debug.LogWarning("[ShowTutorialThenMenu] UI_Main canvas not found, instantiating without parent");
+            obj = Instantiate(tutorialPrefab);
+        }
+
+        obj.GetComponent<TutorialManager>().Init(false);
+    }
+
+    // Вызывается из настроек — показывает компактный туториал
+    public void ShowTutorialCompact()
+    {
+      
+        if (tutorialPrefab == null) return;
+        if (TutorialManager.Instance != null) return;
+
+        Canvas[] canvases = FindObjectsOfType<Canvas>();
+
+        Canvas targetCanvas = null;
+
+        foreach (var c in canvases)
+        {
+            if (c.CompareTag("UI_Main"))
+            {
+                targetCanvas = c;
+                break;
+            }
+        }
+
+        if (targetCanvas == null)
+        {
+            Debug.LogWarning("MainCanvas not found!");
+            return;
+        }
+
+        GameObject obj = Instantiate(tutorialPrefab, targetCanvas.transform);
+
+        var tm = obj.GetComponent<TutorialManager>();
+        tm?.Init(compact: true);
+    }
+
+    // Коллбэк когда туториал закрылся
+    public void OnTutorialClosed()
+    {
+        tutorialIsRunning = false;
+        SaveSystem.SetTutorialShown();
+        // Если меню ещё не загружено — загружаем
+        if (State == GameState.Bootstrap)
+            GoToMenu();
     }
     //public void LoadCharacterData()
     //{

@@ -31,7 +31,7 @@ public class ShopManager : MonoBehaviour
     [Header("Item Prefab")]
     public GameObject itemPrefab;
 
-    private int itemsPerPage = 4;
+    private int itemsPerPage = 2;
     private int itemsPerRow = 2;
     private float pageWidth;
     private bool isDragging = false;

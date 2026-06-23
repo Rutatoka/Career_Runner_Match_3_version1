@@ -19,6 +19,7 @@ public static class SaveSystem
         public int[] objectsCollected;
         public int[] portalsActivated;
         public int[] challengeSuccess;
+        public int lastITTaskIndex = -1;
         public int[] challengeFail;
         public int gems = 0;
         public int coins = 0;
@@ -84,6 +85,18 @@ public static class SaveSystem
         cache.tutorialShown = true;
         Save();
         Debug.Log("SaveSystem: Tutorial marked as shown."+ cache.tutorialShown);
+    }
+    public static int GetLastITTaskIndex()
+    {
+        Load();
+        return cache.lastITTaskIndex;
+    }
+
+    public static void SetLastITTaskIndex(int index)
+    {
+        Load();
+        cache.lastITTaskIndex = index;
+        Save();
     }
     public static string ExportJson() { if (!loaded) Load(); return JsonUtility.ToJson(cache, true); }
     public static void ClearSave() { lock (fileLock) { cache = new SaveData(); loaded = true; try { if (File.Exists(SaveFilePath)) File.Delete(SaveFilePath); } catch (Exception e) { Debug.LogError($"SaveSystem.ClearSave: {e}"); } } }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DropZoneIT : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class DropZoneIT : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("DropZone Settings")]
     public string requiredBlockName;
@@ -120,7 +120,7 @@ public class DropZoneIT : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
         placedBlock = block.gameObject;
 
         // Проверяем правильность
-        isCorrectBlock = block.name == requiredBlockName;
+        isCorrectBlock = block.UniqueId == requiredBlockName;
 
         // Визуальная обратная связь
         isOccupied = true;

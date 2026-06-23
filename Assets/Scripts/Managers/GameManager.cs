@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -311,20 +312,37 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        StartCoroutine(ShowTutorialThenMenuDelayed());
+    }
+    private IEnumerator ShowTutorialThenMenuDelayed()
+    {
         Canvas targetCanvas = null;
 
-        // Ищем канвас с тегом UI_Main (как в ShowTutorialCompact)
-        Canvas[] canvases = FindObjectsOfType<Canvas>();
-        foreach (var c in canvases)
+        // Ждём несколько кадров, пока UI_Main Canvas точно появится в сцене —
+        // на мобильном устройстве загрузка сцены асинхронна и может занять
+        // больше одного кадра, в отличие от редактора на ПК
+        int maxAttempts = 30; // ~0.5 секунды при 60 FPS, более чем достаточно
+        int attempt = 0;
+
+        while (targetCanvas == null && attempt < maxAttempts)
         {
-            if (c.CompareTag("UI_Main"))
+            Canvas[] canvases = FindObjectsOfType<Canvas>();
+            foreach (var c in canvases)
             {
-                targetCanvas = c;
-                break;
+                if (c.CompareTag("UI_Main"))
+                {
+                    targetCanvas = c;
+                    break;
+                }
+            }
+
+            if (targetCanvas == null)
+            {
+                attempt++;
+                yield return null; // ждём следующий кадр
             }
         }
 
-        // Если не нашли — создаём без родителя, TutorialManager сам разберётся
         GameObject obj;
         if (targetCanvas != null)
         {
@@ -332,13 +350,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[ShowTutorialThenMenu] UI_Main canvas not found, instantiating without parent");
+            Debug.LogWarning("[GameManager] UI_Main canvas not found after waiting, instantiating without parent");
             obj = Instantiate(tutorialPrefab);
         }
 
         obj.GetComponent<TutorialManager>().Init(false);
     }
-
     // Вызывается из настроек — показывает компактный туториал
     public void ShowTutorialCompact()
     {

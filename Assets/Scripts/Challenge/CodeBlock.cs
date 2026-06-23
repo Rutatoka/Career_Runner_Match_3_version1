@@ -1,8 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Collections;
 
 public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
@@ -27,7 +28,15 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private CanvasGroup canvasGroup;
     private Coroutine returnCoroutine;
     private Canvas parentCanvas;
+    [Header("Task Content")]
+    public TMP_Text label;          // текст строки кода — назначь в инспекторе
+    public string UniqueId { get; private set; }
+    public bool IsCorrectAnswer { get; private set; }
+    [Header("Double Tap")]
+    public float doubleTapMaxDelay = 0.35f;
 
+    private float lastTapTime = -999f;
+    private int originalSiblingIndex;
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
@@ -35,30 +44,53 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         originalParent = transform.parent;
         startPos = rect.position;
 
+        // ДОБАВЬ: запоминаем порядковую позицию в Grid Layout
+
         blockImage = GetComponent<Image>();
 
-        // Настройка CanvasGroup
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         canvasGroup.blocksRaycasts = true;
 
-        // Отключаем рейкаст у детей
         foreach (var g in GetComponentsInChildren<Graphic>())
             if (g.gameObject != this.gameObject)
                 g.raycastTarget = false;
 
-        Debug.Log($"[CodeBlock] Awake - startPos: {startPos}, originalParent: {originalParent.name}");
+        Debug.Log($"[CodeBlock] Awake - startPos: {startPos}, originalParent: {originalParent.name}, siblingIndex: {originalSiblingIndex}");
+    }
+    public void SetContent(string text, string uniqueId, bool isCorrect)
+    {
+        if (label != null)
+            label.text = text;
+        originalSiblingIndex = transform.GetSiblingIndex();
+
+        UniqueId = uniqueId;
+        IsCorrectAnswer = isCorrect;
+
+        // Если блок ещё лежал в зоне с прошлой попытки — выталкиваем в палитру
+        if (isPlaced)
+        {
+            ExtractFromZone();
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"[CodeBlock] Click detected, clickCount: {eventData.clickCount}, isPlaced: {isPlaced}");
+        if (!isPlaced || isDragging) return;
 
-        if (eventData.clickCount == 2 && isPlaced && !isDragging)
+        float now = Time.unscaledTime;
+        float delta = now - lastTapTime;
+
+        if (delta <= doubleTapMaxDelay)
         {
-            Debug.Log($"[CodeBlock] Double click - extracting from zone");
+            Debug.Log("[CodeBlock] Double tap - extracting from zone");
+            lastTapTime = -999f;
             ExtractFromZone();
+        }
+        else
+        {
+            lastTapTime = now;
         }
     }
 
@@ -188,13 +220,15 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         else
         {
             Debug.Log($"[CodeBlock] Placing in zone: {zone.name}");
-            // Передаем eventData для вызова OnDrop
-            zone.OnDrop(eventData);
+            // Раньше: zone.OnDrop(eventData) — вызывало гонку с авто-IDropHandler
+            // Теперь вызываем AcceptBlock напрямую, без посредника
+            zone.AcceptBlock(this);
         }
 
         nearestZone = null;
     }
 
+    // В ExtractFromZone() сразу после SetParent добавь восстановление позиции:
     private void ExtractFromZone()
     {
         Debug.Log($"[CodeBlock] ExtractFromZone - currentZone: {(currentZone != null ? currentZone.name : "null")}");
@@ -208,20 +242,20 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         isPlaced = false;
         isDragging = false;
 
-        // ВАЖНО: Возвращаем блок в Canvas для свободного перемещения
         transform.SetParent(originalParent, true);
+
+        // ДОБАВЬ: возвращаем блок на его исходное место в сетке,
+        // а не в конец — иначе GridLayoutGroup поставит его не туда
+        int clampedIndex = Mathf.Min(originalSiblingIndex, originalParent.childCount - 1);
+        transform.SetSiblingIndex(clampedIndex);
+
         if (blockImage != null)
             blockImage.color = normalColor;
-        // Плавно возвращаем на исходную позицию
+
         StartCoroutine(SmoothReturnToStart());
 
-        // Возвращаем цвет блока
-      
-
-        // Включаем возможность перетаскивания
         canvasGroup.blocksRaycasts = true;
 
-        // Уведомляем контроллер об извлечении
         var controller = FindObjectOfType<ChallengeITController>();
         if (controller != null)
             controller.OnBlockExtracted();
@@ -260,8 +294,15 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         returnCoroutine = StartCoroutine(AnimateReturn());
     }
 
+    // В AnimateReturn() — та же логика, перед стартом анимации сразу
+    // фиксируем правильную позицию в иерархии:
     private IEnumerator AnimateReturn()
     {
+        // ДОБАВЬ перед анимацией: сразу восстанавливаем место в Grid
+        transform.SetParent(originalParent, true);
+        int clampedIndex = Mathf.Min(originalSiblingIndex, originalParent.childCount - 1);
+        transform.SetSiblingIndex(clampedIndex);
+
         Vector3 currentPos = rect.position;
         float elapsed = 0f;
 
@@ -276,7 +317,7 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         rect.position = startPos;
-        transform.SetParent(originalParent, true);
+        // SetParent здесь больше не нужен — мы это сделали в начале корутины
 
         returnCoroutine = null;
 

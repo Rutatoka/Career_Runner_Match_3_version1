@@ -76,12 +76,19 @@ public class ChallengeMediaController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J)) TriggerLaneHit(2);
         if (Input.GetKeyDown(KeyCode.K)) TriggerLaneHit(3);
 
-        if (nextNoteIndex >= pattern.Count && NoActiveNotes())
-            EndGame();
+        // ¬–≈ћ≈ЌЌџ… Ћќ√ Ч смотрим что происходит на каждом кадре
+        // после того как все ноты из паттерна заспавнены
+        if (nextNoteIndex >= pattern.Count)
+        {
+            int activeNotes = FindObjectsOfType<NoteController>().Length;
+            Debug.Log($"[ChallengeMedia] All notes spawned. Active notes remaining: {activeNotes}, finished={finished}, ended={ended}");
+
+            if (activeNotes == 0)
+                EndGame();
+        }
 
         UpdateUI();
     }
-
     private void GeneratePattern()
     {
         pattern = new List<(float, int)>();
@@ -402,8 +409,9 @@ public class ChallengeMediaController : MonoBehaviour
         finished = true;
 
         float accuracy = (totalNotes > 0) ? (float)notesHit / totalNotes : 0f;
-
         bool success = accuracy >= requiredAccuracy;
+
+        Debug.Log($"[ChallengeMedia] EndChallenge called. success={success}, resultWindow={(resultWindow != null ? "EXISTS" : "NULL")}");
 
         if (success)
             ChallengeManager.Instance?.FinishChallenge(true);
@@ -416,6 +424,10 @@ public class ChallengeMediaController : MonoBehaviour
                 resultWindow.ShowSuccess(notesHit, totalNotes, songTime);
             else
                 resultWindow.ShowFailure(notesHit, totalNotes, "low accuracy");
+        }
+        else
+        {
+            Debug.LogError("[ChallengeMedia] resultWindow is NULL Ч result panel cannot be shown!");
         }
     }
 }

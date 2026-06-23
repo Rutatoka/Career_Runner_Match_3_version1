@@ -51,12 +51,27 @@ public class DropZoneDesign : MonoBehaviour, IPointerClickHandler
         return current != null && current.colorId == correctColorId;
     }
 
+    [Header("Double Tap")]
+    public float doubleTapMaxDelay = 0.35f;
+
+    private float lastTapTime = -999f;
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 2 && current != null)
+        if (current == null) return;
+
+        float now = Time.unscaledTime;
+        float delta = now - lastTapTime;
+
+        if (delta <= doubleTapMaxDelay)
         {
-            Debug.Log("Двойной клик по зоне!");
+            Debug.Log("Двойной тап/клик по зоне!");
+            lastTapTime = -999f; // сбрасываем чтобы тройной тап не засчитался как ещё один двойной
             ReturnBlockToPalette();
+        }
+        else
+        {
+            lastTapTime = now;
         }
     }
 

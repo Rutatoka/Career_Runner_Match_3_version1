@@ -76,7 +76,7 @@ public class Gem : MonoBehaviour
         if (HappinessSystem.Instance != null)
         {
             HappinessSystem.Instance.Add(happinessValue);
-            Debug.Log("gem dobavlen. collect in gem");
+           // Debug.Log("gem dobavlen. collect in gem");
         }
         else
         {

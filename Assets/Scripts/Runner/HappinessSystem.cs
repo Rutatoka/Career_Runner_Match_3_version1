@@ -57,7 +57,7 @@ public class HappinessSystem : MonoBehaviour
 
     public void Add(int amount)
     {
-        Debug.Log($" ADD in hS Attempting to change gems by {amount}. Current gems: {SaveSystem.GetGems()}");
+     //   Debug.Log($" ADD in hS Attempting to change gems by {amount}. Current gems: {SaveSystem.GetGems()}");
         if (amount == 0) return;
 
         if (amount > 0)
@@ -71,7 +71,7 @@ public class HappinessSystem : MonoBehaviour
 
 
         int clamped = Mathf.Clamp(SaveSystem.GetGems(), 0, max);
-        Debug.Log($"Gems changed by {amount}, new value: {clamped}");
+      //  Debug.Log($"Gems changed by {amount}, new value: {clamped}");
         UpdateUI();
         OnGemsChanged?.Invoke(clamped);
         HeaderFooterManager.Instance?.Refresh();

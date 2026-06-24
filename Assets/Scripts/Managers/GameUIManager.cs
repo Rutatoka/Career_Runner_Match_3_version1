@@ -48,11 +48,17 @@ public class GameUIManager : MonoBehaviour
         if (inventoryContainer == null || inventoryItemPrefab == null)
             return;
 
+        // 💀 УДАЛЯЕМ САМЫЙ СТАРЫЙ ЕСЛИ ПЕРЕБОР
+        if (inventoryContainer.childCount >= 12)
+        {
+            Destroy(inventoryContainer.GetChild(0).gameObject);
+        }
+
         var go = Instantiate(inventoryItemPrefab, inventoryContainer);
         var ui = go.GetComponent<InventoryItemUI>();
 
         if (ui != null)
-            ui.SetupProfession(type); // ты можешь сделать SetupProfession сам
+            ui.SetupProfession(type);
 
         inventoryItems.Add(go);
     }

@@ -7,8 +7,8 @@ public static class ItemDatabase
     {
         return new List<ShopItem>
         {
-            new ShopItem("Аватар программиста", "Стильный образ", 100, ShopItemType.Cosmetic),
-            new ShopItem("Дизайнерский костюм", "Для творческих", 150, ShopItemType.Cosmetic),
+            //new ShopItem("Аватар программиста", "Стильный образ", 100, ShopItemType.Cosmetic),
+            //new ShopItem("Дизайнерский костюм", "Для творческих", 150, ShopItemType.Cosmetic),
         };
     }
 
@@ -30,8 +30,8 @@ public static class ItemDatabase
     {
         return new List<ShopItem>
         {
-            new ShopItem("Очки", "Стильные очки", 10, ShopItemType.Accessory, "Accessories/Glasses"),
-            new ShopItem("Шляпа", "Ковбойская", 80, ShopItemType.Accessory, "Accessories/Hat"),
+            //new ShopItem("Очки", "Стильные очки", 10, ShopItemType.Accessory, "Accessories/Glasses"),
+            //new ShopItem("Шляпа", "Ковбойская", 80, ShopItemType.Accessory, "Accessories/Hat"),
         };
     }
 
@@ -39,8 +39,8 @@ public static class ItemDatabase
     {
         return new List<ShopItem>
         {
-            new ShopItem("Прическа", "Модная стрижка", 10, ShopItemType.Appearance, "Appearances/Hair1"),
-            new ShopItem("Борода", "Стильная", 200, ShopItemType.Appearance, "Appearances/Beard"),
+            //new ShopItem("Прическа", "Модная стрижка", 10, ShopItemType.Appearance, "Appearances/Hair1"),
+            //new ShopItem("Борода", "Стильная", 200, ShopItemType.Appearance, "Appearances/Beard"),
         };
     }
 
@@ -48,8 +48,8 @@ public static class ItemDatabase
     {
         return new List<ShopItem>
         {
-            new ShopItem("Удвоить опыт", "30 минут", 50, ShopItemType.Booster),
-            new ShopItem("Ускорить тест", "Мгновенно", 75, ShopItemType.Booster),
+            //new ShopItem("Удвоить опыт", "30 минут", 50, ShopItemType.Booster),
+            //new ShopItem("Ускорить тест", "Мгновенно", 75, ShopItemType.Booster),
         };
     }
 
@@ -57,8 +57,8 @@ public static class ItemDatabase
     {
         return new List<ShopItem>
         {
-            new ShopItem("Лидер или рабочий", "Реши кто ты", 200, ShopItemType.Tests),
-            new ShopItem("Уровень привязанности", "К месту, человеку", 300, ShopItemType.Tests),
+            //new ShopItem("Лидер или рабочий", "Реши кто ты", 200, ShopItemType.Tests),
+            //new ShopItem("Уровень привязанности", "К месту, человеку", 300, ShopItemType.Tests),
         };
     }
 }

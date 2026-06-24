@@ -73,7 +73,7 @@ public class ProfessionSystem : MonoBehaviour
         currentCount++;
         NotifyProgress();
         OnProfessionCollected?.Invoke(type);
-
+      //  InventoryUI.Instance?.AddProfession(type);
         // 4. Портал
         if (currentCount >= requiredCount)
             ActivatePortal(type);

@@ -17,7 +17,7 @@ MonoBehaviour:
   professionData: {fileID: 11400000, guid: 95bdd559b6d3a8a47a35343567495694, type: 2}
   prefab: {fileID: 8479485954936359208, guid: 5fc8790ea4d3da842a1451b07dcdfe18, type: 3}
   icon: {fileID: 0}
-  directionColor: {r: 0.2901961, g: 1, b: 0.6313726, a: 1}
+  directionColor: {r: 0.9543428, g: 1, b: 0, a: 1}
   thoughtLines:
   - "\u041D\u0443\u0436\u043D\u043E \u043F\u043E\u0447\u0438\u043D\u0438\u0442\u044C"
   spawnWeight: 1

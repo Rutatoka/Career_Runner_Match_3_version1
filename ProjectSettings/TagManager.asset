@@ -11,6 +11,7 @@ TagManager:
   - Accessory
   - Appearance
   - UI_Main
+  - FadeCanvas
   layers:
   - Default
   - TransparentFX

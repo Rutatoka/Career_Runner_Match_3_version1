@@ -521,9 +521,10 @@ public class ChallengeDataAnalystController : MonoBehaviour
 
         Debug.Log($"[DataAnalyst] END → success={success}, reason={reason}");
 
-        ChallengeManager.Instance?.FinishChallenge(success);
+     
 
         StartCoroutine(ShowResultDelayed(success, reason));
+       
     }
 
     private System.Collections.IEnumerator ShowResultDelayed(bool success, string reason)
@@ -540,6 +541,7 @@ public class ChallengeDataAnalystController : MonoBehaviour
             {
                 resultWindow.ShowFailure(correctAnswers, requiredCorrect, reason);
             }
+            ChallengeManager.Instance?.FinishChallenge(success);
         }
         else
         {

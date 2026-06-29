@@ -596,7 +596,7 @@ MonoBehaviour:
   powerUpSpawner: {fileID: 1175323616}
   professionSpawner: {fileID: 1150506233}
   professionSafeRadius: 3
-  globalMinZDistance: 2
+  globalMinZDistance: 8
   maxDangersPerTile: 1
   maxCollectiblesPerTile: 6
   maxBoostsPerTile: 1
@@ -1400,7 +1400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06211111, y: 0}
   m_AnchorMax: {x: 0.94451857, y: 0.14579166}
-  m_AnchoredPosition: {x: -3.5391846, y: 5.0272217}
+  m_AnchoredPosition: {x: -3.5391846, y: -22}
   m_SizeDelta: {x: 11.748802, y: 10.0444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &398249760
@@ -1415,11 +1415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3e989e8946a0f42b00b269ae85e2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorWaveBackground
-  colorA: {r: 0.6509804, g: 0.24641518, b: 0.101960756, a: 1}
-  colorB: {r: 0.8509804, g: 0.69046336, b: 0.19999999, a: 1}
-  colorC: {r: 0.8509804, g: 0.14901957, b: 0.27765134, a: 1}
-  colorD: {r: 0.9019608, g: 0.58949596, b: 0.10196079, a: 1}
   cycleDuration: 5
+  saturationVariation: 0.3
+  brightnessVariation: 0.2
 --- !u!114 &398249761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,14 +1431,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6784314, g: 0.3647059, b: 0.027450982, a: 0.16470589}
+  m_Color: {r: 0.6981132, g: 0.4330873, b: 0.14818443, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad2ed54f811ad43cfa72cbf63b489070, type: 3}
+  m_Sprite: {fileID: 758610280, guid: 6dd47413c80ca5848a7187df239d6840, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3045,8 +3043,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -14.3122}
+  m_SizeDelta: {x: 0, y: -28.6243}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1139571241
 MonoBehaviour:
@@ -3077,15 +3075,15 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 25
+    m_Top: 12
     m_Bottom: 0
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 110, y: 110}
-  m_Spacing: {x: 40, y: 20}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_CellSize: {x: 110.69, y: 94.3}
+  m_Spacing: {x: 40.9, y: 15.7}
+  m_Constraint: 1
+  m_ConstraintCount: 5
 --- !u!1 &1150506232
 GameObject:
   m_ObjectHideFlags: 0
@@ -3147,7 +3145,7 @@ MonoBehaviour:
   spawnHeight: 1
   minZ: 2
   maxZ: 8
-  professionZ: 6
+  professionZ: 10
 --- !u!4 &1150506234
 Transform:
   m_ObjectHideFlags: 0
@@ -4681,10 +4679,10 @@ MonoBehaviour:
   spawnHeight: 1
   minZ: 2
   maxZ: 8
-  allowLinePattern: 1
-  minLineCount: 3
+  allowLinePattern: 0
+  minLineCount: 1
   maxLineCount: 6
-  lineSpacing: 1.2
+  lineSpacing: 0.5
 --- !u!4 &1651553998
 Transform:
   m_ObjectHideFlags: 0

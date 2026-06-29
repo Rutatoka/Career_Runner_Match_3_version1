@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 public class ChallengeManager : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class ChallengeManager : MonoBehaviour
 
     public event Action OnChallengeStarted;
     public event Action<bool> OnChallengeFinished;
-
+    public float fadeInDuration = 0.8f;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -44,7 +45,7 @@ public class ChallengeManager : MonoBehaviour
     }
     public void StartChallenge(ProfessionType type)
     {
-        Debug.Log($"[ChallengeManager] StartChallenge SET = {type} hash={GetHashCode()}");
+        Debug.Log($"[ChallengeManager] StartChallenge SET = {type}");
         alreadyFinished = false;
         IsChallengeFinished = false;
         LastSuccess = false;
@@ -53,7 +54,9 @@ public class ChallengeManager : MonoBehaviour
         actionsDone = 0;
         IsChallengeFinished = false;
 
-      //  Debug.Log($"[ChallengeManager] StartChallenge for {type}");
+        // 👇 Плавное появление сцены
+        StartCoroutine(FadeInScene());
+
         OnChallengeStarted?.Invoke();
     }
 
@@ -80,8 +83,35 @@ public class ChallengeManager : MonoBehaviour
 
         // 👇 ВАЖНО: run всегда закрывается
         PreferenceAnalyzer.Instance?.RegisterRunCompleted();
-
+        StartCoroutine(FadeOutAndReturn());
         OnChallengeFinished?.Invoke(success);
+    }
+    private IEnumerator FadeOutAndReturn()
+    {
+        GameObject obj = GameObject.FindWithTag("FadeCanvas");
+        CanvasGroup fadeCanvas = obj?.GetComponent<CanvasGroup>();
+
+        if (fadeCanvas != null)
+        {
+            // 👈 ВАЖНО: сначала явно ставим альфу в 0
+            fadeCanvas.alpha = 1f;
+            fadeCanvas.blocksRaycasts = true;
+
+            float t = 0f;
+            while (t < fadeInDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                fadeCanvas.alpha = Mathf.Lerp(0f, 1f, t / fadeInDuration);
+                yield return null;
+            }
+            fadeCanvas.alpha = 0f;
+
+            // Ждём кадр, чтобы альфа точно применилась
+            yield return null;
+        }
+
+        // Здесь уже загрузка Game сцены
+        // GameManager.Instance?.StartGame();
     }
     public void FailChallenge(string reason)
     {
@@ -145,6 +175,42 @@ public class ChallengeManager : MonoBehaviour
      //   PreferenceAnalyzer.Instance?.RegisterRunCompleted();
 
         OnChallengeFinished?.Invoke(false);
+    }
+    private IEnumerator FadeInScene()
+    {
+        // Ждём пару кадров чтобы сцена точно загрузилась
+       
+
+        // Ищем fadeCanvas
+        GameObject obj = GameObject.FindWithTag("FadeCanvas");
+        if (obj == null)
+        {
+            Debug.LogWarning("[ChallengeManager] FadeCanvas not found");
+            yield break;
+        }
+
+        CanvasGroup fadeCanvas = obj.GetComponent<CanvasGroup>();
+        if (fadeCanvas == null)
+        {
+            Debug.LogWarning("[ChallengeManager] CanvasGroup not found on FadeCanvas");
+            yield break;
+        }
+
+        // Ставим чёрный (сцена загрузилась за порталом/фейдом)
+        fadeCanvas.alpha = 1f;
+        fadeCanvas.blocksRaycasts = true;
+
+        // Плавно убираем
+        float t = 0f;
+        while (t < fadeInDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(1f, 0f, t / fadeInDuration);
+            yield return null;
+        }
+
+        fadeCanvas.alpha = 0f;
+        fadeCanvas.blocksRaycasts = false;
     }
     public ProfessionData GetProfessionData(ProfessionType type)
     {

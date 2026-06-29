@@ -102,6 +102,7 @@ public class SimplePool : MonoBehaviour
         }
 
         Despawn(key, instance);
+        ClearAll();
     }
 
     // -----------------------

@@ -159,6 +159,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 79d9041d1e42aed45aeaf653534b34b2, type: 2}
   - {fileID: 11400000, guid: ef7ee267277e4d8498e6d8326403b653, type: 2}
   autoComplete: 0
+  fadeInDuration: 0.8
 --- !u!4 &145943418
 Transform:
   m_ObjectHideFlags: 0
@@ -203,9 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa4461ae334d0b47b8013e92783b0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortalTransitionController
-  fadeCanvas: {fileID: 1647113378570562063, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-  fadeDuration: 0.5
+  fadeDuration: 2.5
   useFade: 1
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &202539094
 Transform:
   m_ObjectHideFlags: 0
@@ -497,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ef840ac2c33a84096789e081ec22e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlowMoController
-  slowScale: 0.8
+  slowScale: 1
   choiceTime: 1
 --- !u!4 &1088951910
 Transform:
@@ -659,10 +660,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortalSystem
   portalPrefab: {fileID: 7118299415361165890, guid: 1382353452609194caffdc82603d926e, type: 3}
-  portalDistanceAhead: 6
-  portalScaleTime: 0.4
-  suckDuration: 0.6
-  suckStrength: 12
+  portalDistanceAhead: 3
+  portalScaleTime: 0.3
+  suckDuration: 1
+  suckStrength: 6
+  offsetPlayer: 1
+  portalGrowDuration: 2.5
+  portalFinalScale: 20
   player: {fileID: 0}
   playerController: {fileID: 0}
 --- !u!4 &1508706859
@@ -676,7 +680,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.5097, y: -0, z: 125.79461}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -836,7 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PreferenceAnalyzer
   minRunsForRecommendation: 10
-  minSuccessChallenges: 5
+  minSuccessChallenges: 1
   autoSave: 1
   dominantProfession: -1
 --- !u!4 &1900932923
@@ -862,9 +866,9 @@ SceneRoots:
   - {fileID: 1373832814}
   - {fileID: 1033859006}
   - {fileID: 202539094}
+  - {fileID: 1508706859}
   - {fileID: 145943418}
   - {fileID: 1299526168}
-  - {fileID: 1508706859}
   - {fileID: 995618422}
   - {fileID: 1088951910}
   - {fileID: 1900932923}

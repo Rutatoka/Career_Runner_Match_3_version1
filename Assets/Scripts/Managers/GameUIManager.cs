@@ -49,7 +49,7 @@ public class GameUIManager : MonoBehaviour
             return;
 
         // 💀 УДАЛЯЕМ САМЫЙ СТАРЫЙ ЕСЛИ ПЕРЕБОР
-        if (inventoryContainer.childCount >= 12)
+        if (inventoryContainer.childCount >= 10)
         {
             Destroy(inventoryContainer.GetChild(0).gameObject);
         }

@@ -32,17 +32,9 @@ public class EnvironmentDecorator : MonoBehaviour
     private Color currentDisplayColor;
     private Color targetColor;
 
-    private static readonly Color[] ProfessionColors = new Color[]
-    {
-        new Color(0.00f, 0.48f, 1.00f, 0.4f),   // IT        — синий
-        new Color(0.69f, 0.32f, 0.87f, 0.4f),   // Design    — фиолетовый
-        new Color(1.00f, 0.58f, 0.00f, 0.4f),   // Marketing — оранжевый
-        new Color(0.20f, 0.78f, 0.35f, 0.4f),   // Analytics — зелёный
-        new Color(1.00f, 0.18f, 0.33f, 0.4f),   // Media     — розовый
-        new Color(1.00f, 0.80f, 0.00f, 0.4f),   // Engineering — жёлтый
-        new Color(1.00f, 0.23f, 0.19f, 0.4f),   // Management — красный
-    };
 
+    private ProfessionType lastCollectedType = ProfessionType.None;
+    private bool hasCollectedType = false;
     private static readonly Color ColorDefault = new Color(0.7f, 0.5f, 1f, 0.35f);
 
     private class PillarData
@@ -187,6 +179,7 @@ public class EnvironmentDecorator : MonoBehaviour
         data.rend.SetPropertyBlock(data.block);
     }
 
+
     private void UpdateTargetColor()
     {
         if (ProfessionSystem.Instance == null)
@@ -195,19 +188,63 @@ public class EnvironmentDecorator : MonoBehaviour
             return;
         }
 
-        ProfessionType type = ProfessionSystem.Instance.GetDominantType();
+        // Берём текущий доминантный тип
+        ProfessionType currentDominant = ProfessionSystem.Instance.GetDominantType();
 
-        if (type == ProfessionType.None)
+        // Если что-то собрано (не None) — запоминаем
+        if (currentDominant != ProfessionType.None)
+        {
+            lastCollectedType = currentDominant;
+            hasCollectedType = true;
+        }
+
+        // Используем последний собранный тип, а не текущий доминантный
+        ProfessionType typeToUse = hasCollectedType ? lastCollectedType : ProfessionType.None;
+
+        if (typeToUse == ProfessionType.None)
         {
             targetColor = ColorDefault;
             return;
         }
 
-        int index = (int)type;
-        if (index >= 0 && index < ProfessionColors.Length)
-            targetColor = ProfessionColors[index];
+        ProfessionObjectData data = GetProfessionObjectData(typeToUse);
+        if (data != null)
+        {
+            targetColor = data.directionColor;
+            targetColor.a = 0.4f;
+        }
         else
+        {
             targetColor = ColorDefault;
+        }
+    }
+
+    // Новый метод — ищет ProfessionObjectData по типу
+    private ProfessionObjectData GetProfessionObjectData(ProfessionType type)
+    {
+        // Ищем в ChallengeManager (если он есть)
+        if (ChallengeManager.Instance != null)
+        {
+            var objects = ChallengeManager.Instance.professionObjects;
+            if (objects != null)
+            {
+                foreach (var obj in objects)
+                {
+                    if (obj != null && obj.professionType == type)
+                        return obj;
+                }
+            }
+        }
+
+        // Запасной вариант — ищем все ProfessionObjectData в ресурсах
+        var allData = Resources.LoadAll<ProfessionObjectData>("");
+        foreach (var data in allData)
+        {
+            if (data.professionType == type)
+                return data;
+        }
+
+        return null;
     }
 
     // Вызывается из TileSpawner при удалении тайла —

@@ -311,13 +311,13 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 616.8
+  m_Spacing: 200
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!114 &297651640
 MonoBehaviour:
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_VerticalFit: 1
 --- !u!1 &319199324
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -584,103 +584,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391923073}
   m_CullTransparentMesh: 1
---- !u!1001 &479624264
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937408312517045264, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6094481575155760894, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
-      propertyPath: m_Name
-      value: FadeCanvas
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a609a4de1f2383b40a1f782a7b156237, type: 3}
 --- !u!1 &613068410
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +596,7 @@ GameObject:
   - component: {fileID: 613068414}
   - component: {fileID: 613068413}
   - component: {fileID: 613068412}
+  - component: {fileID: 613068415}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -788,6 +692,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613068410}
   m_CullTransparentMesh: 1
+--- !u!114 &613068415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613068410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0.18823531, g: 0, b: 0.227451, a: 0.5}
+  m_EffectDistance: {x: 0, y: -42.3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &657623776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,7 +1678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.050980397, g: 0.039215688, b: 0.08627451, a: 1}
+  m_Color: {r: 0.21176471, g: 0.14117648, b: 0.2784314, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2309,4 +2228,3 @@ SceneRoots:
   - {fileID: 1450722979}
   - {fileID: 1099304977}
   - {fileID: 866175172}
-  - {fileID: 479624264}

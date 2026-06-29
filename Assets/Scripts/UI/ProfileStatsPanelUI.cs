@@ -55,6 +55,15 @@ public class ProfileStatsPanelUI : MonoBehaviour
             item.Setup(stat);
             Debug.Log($"Created item for {stat.type}: weight={stat.weight}");
         }
+        Canvas.ForceUpdateCanvases();
+        ScrollRect scrollRect = GetComponentInParent<ScrollRect>();
+        if (scrollRect == null)
+            scrollRect = contentParent.GetComponentInParent<ScrollRect>();
+
+        if (scrollRect != null)
+        {
+            scrollRect.verticalNormalizedPosition = 1f;
+        }
     }
 
     // ----------------------------

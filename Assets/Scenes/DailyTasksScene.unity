@@ -151,6 +151,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644030160824169295, guid: 79a1b86270624bd43a68e57cd3a41bc1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15.216919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761677291804464526, guid: 79a1b86270624bd43a68e57cd3a41bc1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00018310547
+      objectReference: {fileID: 0}
     - target: {fileID: 4409103111201784707, guid: 79a1b86270624bd43a68e57cd3a41bc1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -752,8 +760,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 651bf4b6045bc704589e48a293c1f5f9, type: 2}
+  m_sharedMaterial: {fileID: -888232581899553362, guid: 651bf4b6045bc704589e48a293c1f5f9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -844,10 +852,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1629749933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8333306}
-  m_AnchorMax: {x: 1, y: 0.9250001}
-  m_AnchoredPosition: {x: 0, y: 0.38959}
-  m_SizeDelta: {x: 0, y: -0.77896}
+  m_AnchorMin: {x: 0, y: 0.8037709}
+  m_AnchorMax: {x: 1, y: 0.9005625}
+  m_AnchoredPosition: {x: 0, y: 2}
+  m_SizeDelta: {x: 0, y: -10.778961}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1629749929
 GameObject:

@@ -1,0 +1,410 @@
+fileFormatVersion: 2
+guid: 2259f1a9c422d514899e95566a29533d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_11"
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 786
+        width: 222
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b6746875876054a9f147b3661773ae
+      internalID: -452330394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_12"
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 876
+        width: 222
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fcbe3f33602e1c44b30e987ce7ca1b5
+      internalID: -947114801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_13"
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 768
+        width: 239
+        height: 234
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c32ac6c1013bf34a9dc9641580bbf6f
+      internalID: 1412407587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_14"
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 498
+        width: 408
+        height: 252
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d22451ab9a5b8474cab51a80c7c0becc
+      internalID: 1143730848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_15"
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 738
+        width: 222
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b66f7d926eb9704498d71f567ba6256
+      internalID: -193395851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_16"
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 498
+        width: 240
+        height: 252
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ac3336ab4783dc4596617edf394920b
+      internalID: 267123291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_17"
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 252
+        width: 253
+        height: 234
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3296414d57133a7418e3ea4e8a066525
+      internalID: -2047344985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_18"
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 251
+        width: 120
+        height: 218
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 676e47247e40781488c77324cbf368e8
+      internalID: -816867627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_19"
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 240
+        width: 252
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06da0ce28ee4cb5439e76b3f42fa209d
+      internalID: -1199574757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_20"
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 24
+        width: 336
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd55fbb51e9498549990708f054a1e46
+      internalID: -1932365273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_21"
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 25
+        width: 354
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4100bc955422343938556395dd67bf
+      internalID: -1393130309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c1b21ae89bfd05e4cae0ffdfbd2222fb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_0": -882153105
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_1": 1768457177
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_10": -1879468991
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_11": -452330394
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_12": -947114801
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_13": 1412407587
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_14": 1143730848
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_15": -193395851
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_16": 267123291
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_17": -2047344985
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_18": -816867627
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_19": -1199574757
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_2": -777474084
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_20": -1932365273
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_21": -1393130309
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_22": 1353347168
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_3": -42158258
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_4": -1974842483
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_5": -637826735
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_6": -1499107365
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_7": 1839520157
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_8": -1272020310
+      "Mastering Canva Elements and Keywords - bogloriacarobinson\u2714\uFE0F-Photoroom_9": -761241162
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

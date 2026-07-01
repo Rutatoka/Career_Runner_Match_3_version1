@@ -266,23 +266,23 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     [Header("Tabs")]
-    public Button cosmeticsTab;
-    public Button boostersTab;
+  //  public Button cosmeticsTab;
+   // public Button boostersTab;
     public Button customizationTab;
 
     [Header("Panels")]
-    public GameObject cosmeticsPanel;
-    public GameObject boostersPanel;
+  //  public GameObject cosmeticsPanel;
+  //  public GameObject boostersPanel;
     public GameObject customizationPanel;
 
     [Header("Scroll Rects")]
-    public ScrollRect cosmeticsScrollRect;
-    public ScrollRect boostersScrollRect;
+  //  public ScrollRect cosmeticsScrollRect;
+  //  public ScrollRect boostersScrollRect;
     public ScrollRect customizationScrollRect;
 
     [Header("Content")]
-    public Transform cosmeticsContent;
-    public Transform boostersContent;
+ //   public Transform cosmeticsContent;
+ //   public Transform boostersContent;
     public Transform customizationContent;
 
     [Header("Page Prefab")]
@@ -299,30 +299,31 @@ public class ShopManager : MonoBehaviour
         if (initialized) return;
         initialized = true;
 
-        cosmeticsTab.onClick.AddListener(() => SwitchTab(0));
-        boostersTab.onClick.AddListener(() => SwitchTab(1));
+    //    cosmeticsTab.onClick.AddListener(() => SwitchTab(0));
+    //    boostersTab.onClick.AddListener(() => SwitchTab(1));
         customizationTab.onClick.AddListener(() => SwitchTab(2));
 
         StartCoroutine(InitShop());
+        SwitchTab(0);
     }
 
     private IEnumerator InitShop()
     {
         LoadItems();
-
+      
         // даём Unity полностью пересчитать layout
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        ResetScroll(cosmeticsScrollRect);
-        ResetScroll(boostersScrollRect);
+      //  ResetScroll(cosmeticsScrollRect);
+     //   ResetScroll(boostersScrollRect);
         ResetScroll(customizationScrollRect);
     }
 
     private void LoadItems()
     {
-        SetupScrollRect(cosmeticsScrollRect, cosmeticsContent, GetCosmeticsList());
-        SetupScrollRect(boostersScrollRect, boostersContent, GetBoostersList());
+    //    SetupScrollRect(cosmeticsScrollRect, cosmeticsContent, GetCosmeticsList());
+    //    SetupScrollRect(boostersScrollRect, boostersContent, GetBoostersList());
 
         List<ShopItem> customizationItems = new List<ShopItem>();
         customizationItems.AddRange(GetClothList());
@@ -360,6 +361,7 @@ public class ShopManager : MonoBehaviour
         // важно: заставляем layout пересчитаться один раз
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)scrollRect.content);
+        SwitchTab(0);
     }
 
     private void ResetScroll(ScrollRect sr)
@@ -371,9 +373,9 @@ public class ShopManager : MonoBehaviour
 
     private void SwitchTab(int index)
     {
-        cosmeticsPanel.SetActive(index == 0);
-        boostersPanel.SetActive(index == 1);
-        customizationPanel.SetActive(index == 2);
+      //  cosmeticsPanel.SetActive(index == 0);
+      //  boostersPanel.SetActive(index == 1);
+        customizationPanel.SetActive(index == 0);
     }
 
     // =========================

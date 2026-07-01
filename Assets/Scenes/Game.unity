@@ -595,10 +595,10 @@ MonoBehaviour:
   dangerSpawner: {fileID: 149215379}
   powerUpSpawner: {fileID: 1175323616}
   professionSpawner: {fileID: 1150506233}
-  professionSafeRadius: 3
-  globalMinZDistance: 8
+  professionSafeRadius: 1
+  globalMinZDistance: 20
   maxDangersPerTile: 1
-  maxCollectiblesPerTile: 6
+  maxCollectiblesPerTile: 20
   maxBoostsPerTile: 1
   maxPowerUpsPerTile: 1
   dangerCooldown: 18
@@ -3336,9 +3336,9 @@ MonoBehaviour:
     objectData: {fileID: 0}
     weight: 0.21
   spawnHeight: 1
-  minZ: 2
-  maxZ: 8
-  professionZ: 10
+  minZ: 4
+  maxZ: 12
+  professionZ: 9
 --- !u!4 &1150506234
 Transform:
   m_ObjectHideFlags: 0
@@ -4584,6 +4584,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7781633335608411998, guid: b780aba03f684274a86504c365e144a0, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -888232581899553362, guid: 651bf4b6045bc704589e48a293c1f5f9, type: 2}
     - target: {fileID: 8024797060185159413, guid: b780aba03f684274a86504c365e144a0, type: 3}
       propertyPath: isInGame
       value: 1
@@ -4876,8 +4880,8 @@ MonoBehaviour:
   minZ: 2
   maxZ: 8
   allowLinePattern: 0
-  minLineCount: 1
-  maxLineCount: 6
+  minLineCount: 3
+  maxLineCount: 10
   lineSpacing: 0.5
 --- !u!4 &1651553998
 Transform:

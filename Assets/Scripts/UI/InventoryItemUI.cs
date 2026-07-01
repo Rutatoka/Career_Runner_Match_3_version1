@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryItemUI : MonoBehaviour
 {
-    public Image icon;
+    public Image iconBg;
+    public Image iconItem;
     public TextMeshProUGUI nameText;
   //  public Button button;
 
@@ -17,7 +18,8 @@ public class InventoryItemUI : MonoBehaviour
         boundItem = item;
         onClick = onClickCallback;
 
-        if (icon != null) icon.sprite = item?.icon;
+        if (iconBg != null) iconBg.sprite = item?.iconBg;
+        if (iconItem != null) iconItem.sprite = item?.iconItem;
         if (nameText != null) nameText.text = item?.displayName ?? "Item";
 
         //if (button != null)
@@ -34,10 +36,11 @@ public class InventoryItemUI : MonoBehaviour
 
         var data = ProfessionSystemDatabase.GetDataByType(type);
 
-        if (icon != null)
+        if (iconItem != null)
         {
-            icon.sprite = data.icon;
-            icon.color = data.directionColor;
+            iconItem.sprite = data.iconItem;
+            iconBg.sprite = data.iconBg;
+            iconItem.color = data.directionColor;
         }
 
         if (nameText != null)

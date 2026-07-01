@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 4f9ba060eed040945a88e55767bd3e3b
   - enabled: 1
-    path: Assets/Scenes/MiniGamesScene.unity
+    path: Assets/Scenes/LinkToCourse.unity
     guid: 0008b6d99825bf644828496d620406ca
   - enabled: 1
     path: Assets/Scenes/ProfileScene.unity

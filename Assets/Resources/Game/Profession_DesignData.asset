@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d163b617fdaea43a4a0e6a60075cae, type: 3}
   m_Name: Profession_DesignData
   m_EditorClassIdentifier: Assembly-CSharp::ProfessionData
-  courseURL: 
+  courseURL: https://synergyacademy.ru/course/graficheskiy-dizayn-s-0-do-pro
   isCategory: 0
   skillVector:
   - 3
@@ -22,6 +22,7 @@ MonoBehaviour:
   - 8
   - 6
   type: 1
-  icon: {fileID: -1812566287, guid: e7f824a4f0a41f445936452fbd1ea8b3, type: 3}
+  iconItem: {fileID: -1812566287, guid: e7f824a4f0a41f445936452fbd1ea8b3, type: 3}
+  iconBg: {fileID: -658136035, guid: 56d7ad2104486ae49aa22a5a65e8c7ad, type: 3}
   professionName: 'Profession_Design '
   category: 2

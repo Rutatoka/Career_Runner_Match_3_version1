@@ -6,7 +6,8 @@ public class ItemData : ScriptableObject
     public string id;
     public string displayName;
     [TextArea] public string description;
-    public Sprite icon;
+    public Sprite iconBg;
+    public Sprite iconItem;
     public bool isCollectible = true;
     public int coinValue = 0;
     public int gemValue = 0;

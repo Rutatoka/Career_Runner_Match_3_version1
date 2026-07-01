@@ -6,14 +6,6 @@ using UnityEngine.UI;
 
 public class GameUIManager : MonoBehaviour
 {
-    [Header("Pickup UI")]
-    public GameObject pickupPanel;
-    public Image pickupIcon;
-    public TextMeshProUGUI pickupName;
-    public TextMeshProUGUI pickupDescription;
-    public Button pickupButton;
-    public TextMeshProUGUI pickupButtonText;
-
     [Header("Inventory UI")]
     public Transform inventoryContainer;
     public GameObject inventoryItemPrefab;
@@ -30,7 +22,6 @@ public class GameUIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (pickupPanel != null) pickupPanel.SetActive(false);
         if (categoryResultPanel != null) categoryResultPanel.SetActive(false);
     }
     private void Start()
@@ -78,12 +69,6 @@ public class GameUIManager : MonoBehaviour
         boundSystem.OnInventoryChanged += HandleInventoryChanged;
         boundSystem.OnItemPicked += HandleItemPicked;
 
-        if (pickupButton != null)
-        {
-            pickupButton.onClick.RemoveAllListeners();
-            pickupButton.onClick.AddListener(() => boundSystem.PickupCurrentItem());
-        }
-
         if (menuButton != null) { menuButton.onClick.RemoveAllListeners(); menuButton.onClick.AddListener(GoToMenu); }
         if (gameMenuButton != null) { gameMenuButton.onClick.RemoveAllListeners(); gameMenuButton.onClick.AddListener(GoToMenu); }
         if (continueButton != null) { continueButton.onClick.RemoveAllListeners(); continueButton.onClick.AddListener(() => { categoryResultPanel?.SetActive(false); boundSystem.ContinueAfterCategory(); }); }
@@ -103,7 +88,6 @@ public class GameUIManager : MonoBehaviour
             boundSystem.OnItemPicked -= HandleItemPicked;
         }
 
-        if (pickupButton != null) pickupButton.onClick.RemoveAllListeners();
         if (menuButton != null) menuButton.onClick.RemoveAllListeners();
         if (gameMenuButton != null) gameMenuButton.onClick.RemoveAllListeners();
         if (continueButton != null) continueButton.onClick.RemoveAllListeners();
@@ -114,18 +98,11 @@ public class GameUIManager : MonoBehaviour
     private void HandleItemAvailable(ItemData item)
     {
         if (item == null) { ShowNoItem(); return; }
-
-        if (pickupPanel != null) pickupPanel.SetActive(true);
-        if (pickupIcon != null) pickupIcon.sprite = item.icon;
-        if (pickupName != null) pickupName.text = item.displayName;
-        if (pickupDescription != null) pickupDescription.text = item.description;
-        if (pickupButtonText != null) pickupButtonText.text = item.isCollectible ? "Подобрать" : "Просмотреть";
-        if (pickupButton != null) pickupButton.interactable = item.isCollectible;
     }
 
     private void ShowNoItem()
     {
-        if (pickupPanel != null) pickupPanel.SetActive(false);
+       // if (pickupPanel != null) pickupPanel.SetActive(false);
     }
 
     private void HandleInventoryChanged()
@@ -163,7 +140,7 @@ public class GameUIManager : MonoBehaviour
     private void OnInventoryItemClicked(ItemData item)
     {
         HandleItemAvailable(item);
-        if (pickupButton != null) pickupButton.interactable = false;
+      //  if (pickupButton != null) pickupButton.interactable = false;
     }
 
     public void ShowCategoryResult()

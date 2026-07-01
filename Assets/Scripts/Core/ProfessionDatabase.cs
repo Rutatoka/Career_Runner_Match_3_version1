@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class ProfessionDatabase : MonoBehaviour
 {
@@ -12,11 +13,19 @@ public class ProfessionDatabase : MonoBehaviour
         Instance = this;
     }
 
-    public Sprite GetIcon(ProfessionType type)
+    public Sprite GetIconItem(ProfessionType type)
     {
         foreach (var p in professions)
             if (p.type == type)
-                return p.icon;
+                return p.iconItem;
+
+        return null;
+    }
+    public Sprite GetIconBg(ProfessionType type)
+    {
+        foreach (var p in professions)
+            if (p.type == type)
+                return p.iconBg;
 
         return null;
     }

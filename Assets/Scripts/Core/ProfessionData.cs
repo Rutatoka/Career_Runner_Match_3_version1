@@ -18,7 +18,8 @@ public class ProfessionData : ScriptableObject
     [Header("Skill Vector (для матчинга)")]
     public float[] skillVector;
     public ProfessionType type;
-    public Sprite icon;
+    public Sprite iconItem;
+    public Sprite iconBg;
 
     [Header("Base")]
     public string professionName;

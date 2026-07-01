@@ -16,7 +16,8 @@ MonoBehaviour:
   professionType: 5
   professionData: {fileID: 11400000, guid: 95bdd559b6d3a8a47a35343567495694, type: 2}
   prefab: {fileID: 8479485954936359208, guid: 5fc8790ea4d3da842a1451b07dcdfe18, type: 3}
-  icon: {fileID: 711240290, guid: 34a3faed45557a54ea6111633f1f2d60, type: 3}
+  iconBg: {fileID: -658136035, guid: 56d7ad2104486ae49aa22a5a65e8c7ad, type: 3}
+  iconItem: {fileID: 2046925776, guid: 0ef84be9f7f02b44d9661babe81cbc5e, type: 3}
   directionColor: {r: 0.9543428, g: 1, b: 0, a: 1}
   thoughtLines:
   - "\u041D\u0443\u0436\u043D\u043E \u043F\u043E\u0447\u0438\u043D\u0438\u0442\u044C"

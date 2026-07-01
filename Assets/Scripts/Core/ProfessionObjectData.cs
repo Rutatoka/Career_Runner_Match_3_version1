@@ -19,7 +19,8 @@ public class ProfessionObjectData : ScriptableObject
     public GameObject prefab;
 
     [Tooltip("»конка дл€ UI (слоты, подсказки, коллекци€)")]
-    public Sprite icon;
+    public Sprite iconBg;
+    public Sprite iconItem;
 
     [Tooltip("÷вет направлени€ (из GDD: синий IT, фиолетовый Design и т.д.)")]
     public Color directionColor = Color.white;

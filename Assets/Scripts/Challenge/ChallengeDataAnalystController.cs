@@ -195,6 +195,7 @@ public class ChallengeDataAnalystController : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.Instance?.PlayChallengeAnalitics();
         Debug.Log("[DataAnalyst] Start");
         timeLeft = duration;
 

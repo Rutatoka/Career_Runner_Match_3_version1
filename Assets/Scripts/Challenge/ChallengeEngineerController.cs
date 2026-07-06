@@ -28,6 +28,8 @@ public class ChallengeEngineerController : MonoBehaviour
     public List<Vector2Int> solutionPath = new List<Vector2Int>();
     private void Start()
     {
+        AudioManager.Instance?.PlayChallengeEngineer();
+
         timeLeft = timeLimit;
         if (resultWindow == null) resultWindow = FindObjectOfType<ResultWindow>();
         GenerateGrid();

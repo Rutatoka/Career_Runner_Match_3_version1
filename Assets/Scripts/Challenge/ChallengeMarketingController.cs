@@ -24,6 +24,8 @@ public class ChallengeMarketingController : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance?.PlayChallengeMarketing();
+
         timeLeft = duration;
         UpdateUI();
         spawner.StartSpawning();

@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProfileScene.unity
     guid: 712b948aabb90634ab5bcfa0c7a85300
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Result.unity
     guid: 9195d1ac011342b49b7be18fe40b7ded
   - enabled: 1

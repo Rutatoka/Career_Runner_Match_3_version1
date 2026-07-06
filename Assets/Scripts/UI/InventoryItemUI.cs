@@ -40,7 +40,7 @@ public class InventoryItemUI : MonoBehaviour
         {
             iconItem.sprite = data.iconItem;
             iconBg.sprite = data.iconBg;
-            iconItem.color = data.directionColor;
+           iconBg.color = data.directionColor;
         }
 
         if (nameText != null)

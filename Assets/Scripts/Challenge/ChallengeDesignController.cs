@@ -35,6 +35,7 @@ public class ChallengeDesignController : MonoBehaviour
  
     private void Start()
     {
+        AudioManager.Instance?.PlayChallengeDesign();
         timeLeft = duration;
 
         if (dropZones == null || dropZones.Count == 0)

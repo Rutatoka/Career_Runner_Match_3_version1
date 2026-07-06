@@ -20,7 +20,9 @@ public class ProfessionData : ScriptableObject
     public ProfessionType type;
     public Sprite iconItem;
     public Sprite iconBg;
-
+    [Header("Course Description")]
+    [TextArea(3, 6)]
+    public string courseDescription;
     [Header("Base")]
     public string professionName;
     public ProfessionCategory category;

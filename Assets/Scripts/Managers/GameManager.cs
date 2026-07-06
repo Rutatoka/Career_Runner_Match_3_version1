@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     public ProfessionData DirectionResult { get; private set; }
     public bool HasCategoryResult { get; private set; }
 
-    public enum GameState { Bootstrap, Menu,MyPath, Game, Result, Shop, DailyTasks, Profile, MiniGames, Settings }
+    public enum GameState { Bootstrap, LinkToCourse, Menu,MyPath, Game, Result, Shop, DailyTasks, Profile, MiniGames, Settings }
     public GameState State { get; private set; }
     public bool IsPaused { get; private set; }
 
@@ -100,13 +101,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
 
         HeaderFooterManager.Instance?.UpdateUI();
-      //  Invoke(nameof(TryShowTutorial), 0.2f);
+        AudioManager.Instance?.PlayMainMenu();
+        //  Invoke(nameof(TryShowTutorial), 0.2f);
     }
     public void GoToMyPath()
     {
         State = GameState.MyPath;
+
         SceneManager.LoadScene("MyPath");
-     
+        AudioManager.Instance?.PlayMyPath();
+
     }
 
     public void GoToShop()
@@ -114,6 +118,7 @@ public class GameManager : MonoBehaviour
         State = GameState.Shop;
         SceneManager.LoadScene("ShopScene");
         HeaderFooterManager.Instance?.UpdateUI();
+        AudioManager.Instance?.PlayShop();
     }
 
     public void GoToDailyTasks()
@@ -121,6 +126,7 @@ public class GameManager : MonoBehaviour
         State = GameState.DailyTasks;
         SceneManager.LoadScene("DailyTasksScene");
         HeaderFooterManager.Instance?.UpdateUI();
+        AudioManager.Instance?.PlayShop();
     }
 
     public void GoToProfile()
@@ -128,13 +134,15 @@ public class GameManager : MonoBehaviour
         State = GameState.Profile;
         SceneManager.LoadScene("ProfileScene");
         HeaderFooterManager.Instance?.UpdateUI();
+        AudioManager.Instance?.PlayShop();
     }
 
-    public void GoToMiniGames()
+    public void GoToLinkToCourse()
     {
-        State = GameState.MiniGames;
-        SceneManager.LoadScene("MiniGamesScene");
+        State = GameState.LinkToCourse;
+        SceneManager.LoadScene("LinkToCourse");
         HeaderFooterManager.Instance?.UpdateUI();
+        AudioManager.Instance?.PlayMyPath();
     }
 
     public void GoToSettings()
@@ -142,6 +150,8 @@ public class GameManager : MonoBehaviour
         State = GameState.Settings;
         SceneManager.LoadScene("SettingsScene");
         HeaderFooterManager.Instance?.UpdateUI();
+        AudioManager.Instance?.PlayShop();
+
     }
 
     public void StartGame()
@@ -163,6 +173,7 @@ public class GameManager : MonoBehaviour
 
         Invoke(nameof(StartRunnerAfterLoad), 0.1f);
         Invoke(nameof(UpdateGameCharacter), 0.1f);
+        AudioManager.Instance?.PlayGame();
     }
     private void StartRunnerAfterLoad()
     {

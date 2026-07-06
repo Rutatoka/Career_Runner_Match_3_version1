@@ -47,6 +47,8 @@ public class ChallengeMediaController : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance?.PlayChallengeMedia();
+
         Debug.Log("[ChallengeMedia] Start");
         GeneratePattern();
 

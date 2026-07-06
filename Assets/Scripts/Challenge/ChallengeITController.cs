@@ -194,6 +194,8 @@ public class ChallengeITController : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.Instance?.PlayChallengeIT();
+
         Debug.Log("[ChallengeIT] Start");
         timeLeft = duration;
 

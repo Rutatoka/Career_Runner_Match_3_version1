@@ -30,6 +30,8 @@ public class ChallengeManagementController : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance?.PlayChallengeManagement();
+
         if (resultWindow == null)
             resultWindow = FindObjectOfType<ResultWindow>();
 

@@ -82,6 +82,6 @@ public class ProfileStatsPanelUI : MonoBehaviour
 
     private void OnFindMore()
     {
-        GameManager.Instance.GoToMiniGames();
+        GameManager.Instance.GoToLinkToCourse();
     }
 }

@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         int newLane = Mathf.Clamp(targetLane + direction, 0, laneCount - 1);
         if (newLane == targetLane) return;
+        SFXManager.Instance?.PlaySwipe();
 
         targetLane = newLane;
         OnLaneChanged?.Invoke(targetLane);

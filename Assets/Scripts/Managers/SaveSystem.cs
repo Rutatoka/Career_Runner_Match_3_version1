@@ -15,7 +15,11 @@ public static class SaveSystem
     {
         public bool tutorialShown = false;
         public int totalRuns;
-     //   public PreferenceData preferenceData;
+        // Settings
+        public float musicVolume = 0.7f;
+        public float sfxVolume = 1f;
+        public float slowMoScale = 0.4f;
+        //   public PreferenceData preferenceData;
         public int[] objectsCollected;
         public int[] portalsActivated;
         public int[] challengeSuccess;
@@ -98,6 +102,48 @@ public static class SaveSystem
         cache.lastITTaskIndex = index;
         Save();
     }
+    #region Settings
+
+    public static float GetMusicVolume()
+    {
+        Load();
+        return cache.musicVolume;
+    }
+
+    public static void SetMusicVolume(float value)
+    {
+        Load();
+        cache.musicVolume = Mathf.Clamp01(value);
+        Save();
+    }
+
+    public static float GetSFXVolume()
+    {
+        Load();
+        return cache.sfxVolume;
+    }
+
+    public static void SetSFXVolume(float value)
+    {
+        Load();
+        cache.sfxVolume = Mathf.Clamp01(value);
+        Save();
+    }
+
+    public static float GetSlowMoScale()
+    {
+        Load();
+        return cache.slowMoScale;
+    }
+
+    public static void SetSlowMoScale(float value)
+    {
+        Load();
+        cache.slowMoScale = Mathf.Clamp(value, 0.05f, 1f);
+        Save();
+    }
+
+    #endregion
     public static string ExportJson() { if (!loaded) Load(); return JsonUtility.ToJson(cache, true); }
     public static void ClearSave() { lock (fileLock) { cache = new SaveData(); loaded = true; try { if (File.Exists(SaveFilePath)) File.Delete(SaveFilePath); } catch (Exception e) { Debug.LogError($"SaveSystem.ClearSave: {e}"); } } }
 

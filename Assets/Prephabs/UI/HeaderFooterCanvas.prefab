@@ -789,6 +789,7 @@ GameObject:
   - component: {fileID: 3449645794209998421}
   - component: {fileID: 336532410653016904}
   - component: {fileID: 4460821745675465952}
+  - component: {fileID: 619405905059434596}
   m_Layer: 5
   m_Name: btnTasks
   m_TagString: Untagged
@@ -913,6 +914,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.45490196}
   m_EffectDistance: {x: 2.64, y: -11.88}
   m_UseGraphicAlpha: 1
+--- !u!114 &619405905059434596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2683268506938494488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &2967254447570160740
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +940,7 @@ GameObject:
   - component: {fileID: 1510057707675202571}
   - component: {fileID: 848828286160112737}
   - component: {fileID: 5239566647456595431}
+  - component: {fileID: 3623618780317856048}
   m_Layer: 5
   m_Name: btnProfile
   m_TagString: Untagged
@@ -1050,6 +1065,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.45490196}
   m_EffectDistance: {x: 2.64, y: -11.88}
   m_UseGraphicAlpha: 1
+--- !u!114 &3623618780317856048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967254447570160740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &3098182494048234154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1196,7 @@ GameObject:
   - component: {fileID: 3391470191678076135}
   - component: {fileID: 6644023134031572447}
   - component: {fileID: 223581808220783375}
+  - component: {fileID: 3927191177007432405}
   m_Layer: 5
   m_Name: GemsShop
   m_TagString: Untagged
@@ -1292,6 +1321,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.45490196}
   m_EffectDistance: {x: 2.64, y: -11.88}
   m_UseGraphicAlpha: 1
+--- !u!114 &3927191177007432405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520985982793115885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &3612499268515202427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,6 +1347,7 @@ GameObject:
   - component: {fileID: 684126484797302046}
   - component: {fileID: 2107572527742084530}
   - component: {fileID: 4248833899102658707}
+  - component: {fileID: 5259793601390403362}
   m_Layer: 5
   m_Name: btnHome
   m_TagString: Untagged
@@ -1429,6 +1472,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.45490196}
   m_EffectDistance: {x: 2.64, y: -11.88}
   m_UseGraphicAlpha: 1
+--- !u!114 &5259793601390403362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612499268515202427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &6014800142578838776
 GameObject:
   m_ObjectHideFlags: 0

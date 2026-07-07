@@ -37,7 +37,9 @@ public class GameManager : MonoBehaviour
 
     public CharacterData characterData = new CharacterData();
     private bool tutorialIsRunning;
-    private bool tutorialWasEverStartedThisSession;
+    private bool tutorialWasEverStartedThisSession; 
+  
+       
     private void Awake()
     {
         Debug.Log($"GM Awake: {GetInstanceID()} scene: {gameObject.scene.name}"); if (Instance != null)
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+       
         GoToMenu();
 
         
@@ -102,6 +105,12 @@ public class GameManager : MonoBehaviour
 
         HeaderFooterManager.Instance?.UpdateUI();
         AudioManager.Instance?.PlayMainMenu();
+        float musicVolume = SaveSystem.GetMusicVolume();
+        float sfxVolume = SaveSystem.GetSFXVolume();
+        float slowScale = SaveSystem.GetSlowMoScale();
+        AudioManager.Instance?.SetMusicVolume(musicVolume);
+        SFXManager.Instance?.SetVolume(sfxVolume);
+        SlowMoController.Instance?.SetSlowScale(slowScale);
         //  Invoke(nameof(TryShowTutorial), 0.2f);
     }
     public void GoToMyPath()

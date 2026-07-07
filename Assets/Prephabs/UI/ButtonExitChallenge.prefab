@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 1364991687309891193}
   - component: {fileID: 4072790899082766677}
   - component: {fileID: 1821962426708619298}
+  - component: {fileID: -4729469220624953343}
   m_Layer: 5
   m_Name: ButtonExitChallenge
   m_TagString: BackToMenuBtn
@@ -258,3 +259,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-4729469220624953343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5569431571104638941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0

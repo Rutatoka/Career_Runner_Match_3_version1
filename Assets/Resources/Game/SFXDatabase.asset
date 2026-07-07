@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cf1bbd856523842a4f751c1acae778, type: 3}
+  m_Name: SFXDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::SFXDatabase
+  button: {fileID: 8300000, guid: b6cef48ac6d29cb42964c37c6b29e61d, type: 3}
+  button2: {fileID: 8300000, guid: 58ce6560113461a429a32a75fccde8ec, type: 3}
+  swipe: {fileID: 8300000, guid: bb94e1e8119ad5e489977f6fd0d83a9a, type: 3}
+  coin: {fileID: 8300000, guid: 67a8194b1e60c9d4abbc568e869796f0, type: 3}
+  portal: {fileID: 8300000, guid: cf1dd25c8fac82e48ab34583dff80fc8, type: 3}
+  powerUp: {fileID: 8300000, guid: 88c5da96eef49574b82083e678e32d2d, type: 3}
+  profession: {fileID: 8300000, guid: cb2c3a7f766c39841970163d6882d651, type: 3}
+  rightAnswer: {fileID: 8300000, guid: a208f16fda615b2468ca200509cd3319, type: 3}
+  wrongAnswer: {fileID: 8300000, guid: 9f3c605d6815ac44e914d86b6286d43c, type: 3}
+  perfectNote: {fileID: 8300000, guid: 2628a45c0b4bead4581df2afa008b6d9, type: 3}
+  goodNote: {fileID: 8300000, guid: ad16c6d73bb5a4149941907a317aadd4, type: 3}
+  badNote: {fileID: 8300000, guid: 944be4ea9cc31054db4148e03ec0b497, type: 3}
+  bueItem: {fileID: 8300000, guid: e57c9ef1270997c4cb5f29842ad9583c, type: 3}
+  winResult: {fileID: 8300000, guid: 6a50cd0665715e04e8a893b0520bbe5a, type: 3}
+  lossResult: {fileID: 8300000, guid: 76cd19169a17ca049a83fe72a50bad59, type: 3}
+  equipItemToProfile: {fileID: 8300000, guid: 6b45a5865a149804f8a1341d096d58fb, type: 3}
+  unequipItemToProfile: {fileID: 8300000, guid: 0d5a2b896cb5ce14db93d67709fc02c4, type: 3}

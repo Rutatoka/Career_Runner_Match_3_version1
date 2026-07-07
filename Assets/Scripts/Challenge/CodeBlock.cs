@@ -99,7 +99,7 @@ public class CodeBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Debug.Log($"[CodeBlock] OnBeginDrag - isPlaced: {isPlaced}, currentZone: {(currentZone != null ? currentZone.name : "null")}");
 
         if (isDragging) return;
-
+        SFXManager.Instance?.PlaySwipe();
         // ≈сли блок уже размещен - сначала извлекаем его
         if (isPlaced && currentZone != null)
         {

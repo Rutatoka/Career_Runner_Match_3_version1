@@ -81,6 +81,7 @@ public class ProfileItemUI : MonoBehaviour
                                 break;
                         }
                         GameManager.Instance.SaveCharacterData();
+                        SFXManager.Instance?.PlayUnequipItem();
 
                         // Обновляем цвета мгновенно
                         CharacterModelController model = FindAnyObjectByType<CharacterModelController>();
@@ -114,7 +115,10 @@ public class ProfileItemUI : MonoBehaviour
             else
             {
                 // Надеваем предмет
+                SFXManager.Instance?.PlayEquipItem();
+
                 onEquip(currentItem);
+
             }
             UpdateUI();
         }

@@ -83,6 +83,7 @@ public class ChallengeDesignController : MonoBehaviour
 
         if (isCorrect)
         {
+            SFXManager.Instance?.PlayRightAnswer();
             correctPlacements++;
             ShowFeedback("Отличный выбор! Цвета сочетаются!", Color.green);
 
@@ -96,6 +97,7 @@ public class ChallengeDesignController : MonoBehaviour
         }
         else
         {
+            SFXManager.Instance?.PlayWrongAnswer();
             ShowFeedback("Этот цвет нарушает гармонию композиции", Color.red);
             StartCoroutine(ShowHarmonyHintDelayed());
         }
@@ -221,7 +223,7 @@ public class ChallengeDesignController : MonoBehaviour
     public void OnBlockRemoved(string colorId)
     {
         if (finished) return;
-
+        SFXManager.Instance?.PlayButton2();
         correctPlacements = CountCorrectZones();
         ShowFeedback("↩️ Цвет возвращен в палитру", Color.cyan);
         UpdateUI();
@@ -338,10 +340,12 @@ public class ChallengeDesignController : MonoBehaviour
         {
             if (success)
             {
+                SFXManager.Instance?.PlayWinResult();
                 resultWindow.ShowSuccess(correct, requiredCorrect, timeLeft);
             }
             else
             {
+                SFXManager.Instance?.PlayLossResult();
                 resultWindow.ShowFailure(correct, requiredCorrect, reason);
             }
         }

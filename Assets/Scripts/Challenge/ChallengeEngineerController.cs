@@ -222,10 +222,14 @@ public class ChallengeEngineerController : MonoBehaviour
     {
         if (finished) return;
 
+        SFXManager.Instance?.PlayButton2();
         UpdateAllVisuals();
 
         if (CheckPath())
+        {
+            SFXManager.Instance?.PlayPowerUp();
             EndGame(true, "success");
+        }
     }
 
     private bool CheckPath()
@@ -294,6 +298,7 @@ public class ChallengeEngineerController : MonoBehaviour
 
         if (success)
         {
+            SFXManager.Instance?.PlayWinResult();
             resultWindow.ShowSuccess(
                 gridWidth * gridHeight,
                 gridWidth * gridHeight,
@@ -302,6 +307,8 @@ public class ChallengeEngineerController : MonoBehaviour
         }
         else
         {
+            SFXManager.Instance?.PlayLossResult();
+
             resultWindow.ShowFailure(
                 0,
                 gridWidth * gridHeight,

@@ -45,6 +45,8 @@ public class PowerUpObject : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         collected = true;
+        SFXManager.Instance?.PlayPowerUp();
+
         HandlePickup();
     }
 

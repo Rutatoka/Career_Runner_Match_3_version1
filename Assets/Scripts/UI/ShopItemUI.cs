@@ -102,6 +102,8 @@ public class ShopItemUI : MonoBehaviour
         if (GameManager.Instance.GetGems() < currentItem.price)
         {
             Debug.Log($"Недостаточно гемов! Нужно: {currentItem.price}");
+            SFXManager.Instance?.PlayWrongAnswer();
+
             return;
         }
 
@@ -109,6 +111,7 @@ public class ShopItemUI : MonoBehaviour
         {
             MarkAsOwned();
             UpdateUI();
+            SFXManager.Instance?.PlayBueItem();
 
             if (HeaderFooterManager.Instance != null)
                 HeaderFooterManager.Instance.Refresh();

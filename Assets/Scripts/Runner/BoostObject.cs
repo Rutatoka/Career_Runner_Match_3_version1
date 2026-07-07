@@ -48,6 +48,7 @@ public class BoostObject : MonoBehaviour
                 ApplyDash(player);
                 break;
         }
+        SFXManager.Instance?.PlayPowerUp();
 
         PlayEffects();
         DestroyOrDespawn();
@@ -77,9 +78,6 @@ public class BoostObject : MonoBehaviour
     {
         if (activateEffect != null)
             Instantiate(activateEffect, transform.position, Quaternion.identity);
-
-        if (activateSound != null)
-            AudioSource.PlayClipAtPoint(activateSound, transform.position);
     }
 
     private void DestroyOrDespawn()

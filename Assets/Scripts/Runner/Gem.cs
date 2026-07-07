@@ -71,6 +71,7 @@ public class Gem : MonoBehaviour
     public void Collect()
     {
         if (collected) return;
+        SFXManager.Instance?.PlayCoin();
         collected = true;
 
         if (HappinessSystem.Instance != null)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5330948804259669879}
   - component: {fileID: 1783804366648094384}
   - component: {fileID: 5015953384884269980}
+  - component: {fileID: 4364428684277503067}
   m_Layer: 5
   m_Name: ExitMenu
   m_TagString: Untagged
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -979725082, guid: e6902dd18a18c8c4aa3a135de415d0e7, type: 3}
+  m_Sprite: {fileID: -581186538, guid: 0424e354f98d0e14f9fa35744fbde503, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -106,8 +107,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -885434630, guid: e6902dd18a18c8c4aa3a135de415d0e7, type: 3}
-    m_PressedSprite: {fileID: 160783437, guid: e6902dd18a18c8c4aa3a135de415d0e7, type: 3}
+    m_HighlightedSprite: {fileID: -1519784775, guid: 0424e354f98d0e14f9fa35744fbde503, type: 3}
+    m_PressedSprite: {fileID: -1055334022, guid: 0424e354f98d0e14f9fa35744fbde503, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4364428684277503067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169517250827960497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &2862914645579803374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1039,7 @@ GameObject:
   - component: {fileID: 1597284616545041350}
   - component: {fileID: 5162434486361043755}
   - component: {fileID: 333415559148068406}
+  - component: {fileID: 8094005435257976893}
   m_Layer: 5
   m_Name: returntToRace
   m_TagString: Untagged
@@ -1073,14 +1088,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.990566, g: 0.21960661, b: 0.96601325, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -581186538, guid: 0424e354f98d0e14f9fa35744fbde503, type: 3}
+  m_Sprite: {fileID: -979725082, guid: e6902dd18a18c8c4aa3a135de415d0e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1119,8 +1134,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -1519784775, guid: 0424e354f98d0e14f9fa35744fbde503, type: 3}
-    m_PressedSprite: {fileID: -1055334022, guid: 0424e354f98d0e14f9fa35744fbde503, type: 3}
+    m_HighlightedSprite: {fileID: -885434630, guid: e6902dd18a18c8c4aa3a135de415d0e7, type: 3}
+    m_PressedSprite: {fileID: 160783437, guid: e6902dd18a18c8c4aa3a135de415d0e7, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1134,6 +1149,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8094005435257976893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846307562548553216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &8853398954116140857
 GameObject:
   m_ObjectHideFlags: 0

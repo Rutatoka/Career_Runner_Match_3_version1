@@ -128,9 +128,9 @@ public class AudioManager : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         musicVolume = Mathf.Clamp01(volume);
-        // Обновляем только активный источник если он играет
-        if (ActiveSource.isPlaying)
-            ActiveSource.volume = musicVolume;
+
+        musicSource.volume = musicVolume;
+        musicSourceB.volume = musicVolume;
     }
 
     // ─── ВНУТРЕННЯЯ ЛОГИКА ────────────────────────────────────────────

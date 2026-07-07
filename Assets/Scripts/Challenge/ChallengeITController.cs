@@ -294,10 +294,12 @@ public class ChallengeITController : MonoBehaviour
 
         if (isCorrect)
         {
+            SFXManager.Instance?.PlayRightAnswer();
             ShowFeedback("Правильно!", Color.green);
         }
         else
         {
+            SFXManager.Instance?.PlayWrongAnswer();
             ShowFeedback("Неправильный блок!", Color.red);
         }
 
@@ -321,6 +323,7 @@ public class ChallengeITController : MonoBehaviour
 
             if (allCorrect)
             {
+                SFXManager.Instance?.PlayPowerUp();
                 EndChallenge(true, "success");
             }
             else
@@ -336,7 +339,7 @@ public class ChallengeITController : MonoBehaviour
     public void OnBlockExtracted()
     {
         if (finished) return;
-
+        SFXManager.Instance?.PlayButton2();
         // Не уменьшаем attempts, так как это не новая попытка
         // Просто обновляем UI и проверяем статус
 
@@ -369,6 +372,7 @@ public class ChallengeITController : MonoBehaviour
 
             if (allCorrect)
             {
+                SFXManager.Instance?.PlayPowerUp();
                 Debug.Log("[ChallengeIT] All blocks are correct - SUCCESS!");
                 EndChallenge(true, "success");
             }
@@ -493,10 +497,13 @@ public class ChallengeITController : MonoBehaviour
         {
             if (success)
             {
+                SFXManager.Instance?.PlayWinResult();
+
                 resultWindow.ShowSuccess(correctBlocks, requiredCorrect, timeLeft);
             }
             else
             {
+                SFXManager.Instance?.PlayLossResult();
                 resultWindow.ShowFailure(correctBlocks, requiredCorrect, reason);
 
             }

@@ -79,7 +79,10 @@ public class SlowMoController : MonoBehaviour
         StartCoroutine(PortalSlowRoutine());
 
     }
-
+    public void SetSlowScale(float value)
+    {
+        slowScale = Mathf.Clamp(value, 0.1f, 1f);
+    }
     private IEnumerator PortalSlowRoutine()
     {
         if (choosing) yield break; // не перебивать развилку

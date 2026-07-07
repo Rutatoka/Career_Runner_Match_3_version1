@@ -55,6 +55,7 @@ public class DraggableColorBlock : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        SFXManager.Instance?.PlaySwipe();
         startPos = rect.position;
         group.alpha = dragAlpha;
         group.blocksRaycasts = false;

@@ -136,6 +136,7 @@ public class DailyTaskUI : MonoBehaviour
         if (currentTask == null) return;
         if (currentTask.isCompleted) return;
         if (currentTask.currentProgress < currentTask.targetProgress) return;
+        SFXManager.Instance?.PlayBueItem();
 
         currentTask.MarkCompleted();
         PersistState();

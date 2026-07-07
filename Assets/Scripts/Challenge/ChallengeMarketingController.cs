@@ -11,7 +11,7 @@ public class ChallengeMarketingController : MonoBehaviour
     private bool ended;
 
     [Header("References")]
-    public TMP_Text timerText;
+//    public TMP_Text timerText;
     public TMP_Text progressText;
     public TMP_Text feedbackText;
     public ResultWindow resultWindow;
@@ -49,6 +49,7 @@ ClearFeedback();
     {
         if (finished) return;
         if (ended) return;
+        SFXManager.Instance?.PlayRightAnswer();
         goodCount++;
         ShowFeedback($"Отлично! {goodCount}/{requiredGood}", Color.green);
 
@@ -63,7 +64,7 @@ ClearFeedback();
     public void CatchBad()
     {
         if (finished) return;
-
+        SFXManager.Instance?.PlayWrongAnswer();
         badCount++;
         ShowFeedback($"Плохой комментарий! {badCount}/{maxBad}", Color.red);
 
@@ -95,9 +96,15 @@ ClearFeedback();
         if (resultWindow != null)
         {
             if (success)
+            {
+                SFXManager.Instance?.PlayWinResult();
                 resultWindow.ShowSuccess(goodCount, requiredGood, timeLeft);
+            }
             else
+            {
+                SFXManager.Instance?.PlayLossResult();
                 resultWindow.ShowFailure(goodCount, requiredGood, reason);
+            }
         }
     }
     private void Fail(string reason)
@@ -107,7 +114,7 @@ ClearFeedback();
 
     private void UpdateUI()
     {
-        timerText.text = Mathf.CeilToInt(timeLeft).ToString();
+       // timerText.text = Mathf.CeilToInt(timeLeft).ToString();
         progressText.text = $" {goodCount}/{requiredGood} |  {badCount}/{maxBad}";
     }
 

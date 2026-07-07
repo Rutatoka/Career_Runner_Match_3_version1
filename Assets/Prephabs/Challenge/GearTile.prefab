@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.011764706, g: 0.06666667, b: 0.09803922, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -404,7 +404,7 @@ MonoBehaviour:
   inactiveConnectorColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   validTileColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.5}
   invalidTileColor: {r: 0.8, g: 0.2, b: 0.2, a: 0.5}
-  defaultTileColor: {r: 1, g: 1, b: 1, a: 0}
+  defaultTileColor: {r: 0.011764706, g: 0.06666667, b: 0.09803922, a: 0}
   rotationDuration: 0.2
   connections: 00000000
 --- !u!1 &8097722489533101549

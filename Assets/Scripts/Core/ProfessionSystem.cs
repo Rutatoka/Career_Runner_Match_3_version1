@@ -35,7 +35,7 @@ public class ProfessionSystem : MonoBehaviour
     public void CollectProfessionObject(ProfessionObjectData data)
     {
         if (data == null) return;
-
+        SFXManager.Instance?.PlayProfession();
         var type = data.professionType;
         SlowMoController.Instance?.ForceEndSlowMo();
 
@@ -97,8 +97,8 @@ public class ProfessionSystem : MonoBehaviour
 
         SlowMoController.Instance?.TriggerPortalSlowMo();
         PortalSystem.Instance?.ShowPortal(type);
-        PreferenceAnalyzer.Instance?.
-    RegisterPortal(type);
+        SFXManager.Instance?.PlayPortal();
+        PreferenceAnalyzer.Instance?.RegisterPortal(type);
         OnPortalActivated?.Invoke(type);
 
         ResetProgress();

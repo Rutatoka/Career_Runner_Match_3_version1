@@ -72,7 +72,7 @@ public class ChallengeManagementController : MonoBehaviour
     public void OnFolderClicked(ColorType folderColor)
     {
         if (finished || !isWaitingForSelection) return;
-
+        SFXManager.Instance?.PlayButton2();
         Debug.Log($"[ChallengeManagement] Выбрана папка: {folderColor}");
 
         bool isCorrect = IsCorrectAnswer(currentSheetIndex, folderColor);
@@ -81,7 +81,14 @@ public class ChallengeManagementController : MonoBehaviour
             btn.SetInteractable(false);
 
         if (isCorrect)
+        {
+            SFXManager.Instance?.PlayRightAnswer();
             correctAnswers++;
+        }
+        else
+        {
+            SFXManager.Instance?.PlayWrongAnswer();
+        }
 
         ShowFeedback(isCorrect, currentSheetIndex, folderColor);
 
@@ -242,10 +249,12 @@ public class ChallengeManagementController : MonoBehaviour
 
         if (success)
         {
+            SFXManager.Instance?.PlayWinResult();
             resultWindow.ShowSuccess(correctAnswers, requiredCorrect, 0);
         }
         else
         {
+            SFXManager.Instance?.PlayLossResult();
             resultWindow.ShowFailure(correctAnswers, requiredCorrect, "wrong");
         }
     }

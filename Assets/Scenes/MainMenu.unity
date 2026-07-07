@@ -1044,6 +1044,7 @@ GameObject:
   - component: {fileID: 845247748}
   - component: {fileID: 845247747}
   - component: {fileID: 845247750}
+  - component: {fileID: 845247751}
   m_Layer: 5
   m_Name: MyPathButton
   m_TagString: Untagged
@@ -1168,6 +1169,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1.97, y: -11.23}
   m_UseGraphicAlpha: 1
+--- !u!114 &845247751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845247745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &912488970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,10 +1280,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 767682930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.047706228, y: 0.8257576}
-  m_AnchorMax: {x: 0.95616704, y: 0.8667272}
-  m_AnchoredPosition: {x: -5.003601, y: -51.4948}
-  m_SizeDelta: {x: -8.0628, y: 93.1574}
+  m_AnchorMin: {x: 0.04822223, y: 0.82239586}
+  m_AnchorMax: {x: 0.95616704, y: 1}
+  m_AnchoredPosition: {x: -2.5, y: -79.5}
+  m_SizeDelta: {x: -8.062805, y: -168.84259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1329042745
 MonoBehaviour:
@@ -1318,12 +1332,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 75
+  m_fontSizeMax: 50
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1684,10 +1698,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 767682930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.047706228, y: 0.8257576}
-  m_AnchorMax: {x: 0.95616704, y: 0.8667272}
-  m_AnchoredPosition: {x: -2, y: -58}
-  m_SizeDelta: {x: -8.0628, y: 93.1574}
+  m_AnchorMin: {x: 0.04822223, y: 0.82239586}
+  m_AnchorMax: {x: 0.95616704, y: 0.90516657}
+  m_AnchoredPosition: {x: -2.5, y: 5.5}
+  m_SizeDelta: {x: -8.062805, y: 13.15741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1479182112
 MonoBehaviour:
@@ -1736,12 +1750,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 75
+  m_fontSizeMax: 50
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1923,6 +1937,7 @@ GameObject:
   - component: {fileID: 1515821102}
   - component: {fileID: 1515821101}
   - component: {fileID: 1515821104}
+  - component: {fileID: 1515821105}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -2047,6 +2062,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1.97, y: -11.23}
   m_UseGraphicAlpha: 1
+--- !u!114 &1515821105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515821099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &1625632778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2088,7 @@ GameObject:
   - component: {fileID: 1625632781}
   - component: {fileID: 1625632780}
   - component: {fileID: 1625632783}
+  - component: {fileID: 1625632784}
   m_Layer: 5
   m_Name: DebugButton
   m_TagString: Untagged
@@ -2184,6 +2213,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1.97, y: -11.23}
   m_UseGraphicAlpha: 1
+--- !u!114 &1625632784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625632778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &1657863597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,6 +2239,7 @@ GameObject:
   - component: {fileID: 1657863599}
   - component: {fileID: 1657863598}
   - component: {fileID: 1657863603}
+  - component: {fileID: 1657863604}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -2321,6 +2364,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1.97, y: -11.23}
   m_UseGraphicAlpha: 1
+--- !u!114 &1657863604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657863597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea4f10c2a47b97498d46426be401c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
+  sound: 0
 --- !u!1 &1689742237
 GameObject:
   m_ObjectHideFlags: 0

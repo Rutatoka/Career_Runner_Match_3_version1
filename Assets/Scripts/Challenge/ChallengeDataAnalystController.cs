@@ -389,6 +389,7 @@ public class ChallengeDataAnalystController : MonoBehaviour
 
         if (isCorrect)
         {
+            SFXManager.Instance?.PlayRightAnswer();
             correctAnswers++;
             ShowFeedback(" Правильно! Вы нашли закономерность!", Color.green);
 
@@ -397,6 +398,7 @@ public class ChallengeDataAnalystController : MonoBehaviour
         }
         else
         {
+            SFXManager.Instance?.PlayWrongAnswer();
             ShowFeedback("Неправильно! Подумайте ещё.", Color.red);
             StartCoroutine(FlashWrongButton(buttonIndex));
         }
@@ -536,10 +538,12 @@ public class ChallengeDataAnalystController : MonoBehaviour
         {
             if (success)
             {
+                SFXManager.Instance?.PlayWinResult();
                 resultWindow.ShowSuccess(correctAnswers, requiredCorrect, timeLeft);
             }
             else
             {
+                SFXManager.Instance?.PlayLossResult();
                 resultWindow.ShowFailure(correctAnswers, requiredCorrect, reason);
             }
             ChallengeManager.Instance?.FinishChallenge(success);

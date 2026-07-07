@@ -91,6 +91,7 @@ public class DropZoneIT : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         Debug.Log($"[DropZone] OnDrop on '{name}'");
 
         if (eventData.pointerDrag == null) return;
+        SFXManager.Instance?.PlayButton2();
         if (isOccupied)
         {
             Debug.Log($"[DropZone] '{name}' уже занята!");

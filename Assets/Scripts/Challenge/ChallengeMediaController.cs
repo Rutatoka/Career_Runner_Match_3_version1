@@ -127,16 +127,19 @@ public class ChallengeMediaController : MonoBehaviour
         {
             rating = "Perfect";
             points = 100;
+            SFXManager.Instance?.PlayPerfectNote();
         }
         else if (accuracyDistance <= goodThreshold)
         {
             rating = "Good";
             points = 50;
+            SFXManager.Instance?.PlayGoodNote();
         }
         else
         {
             rating = "Bad";
             points = 10;
+            SFXManager.Instance?.PlayBadNote();
         }
 
         combo++;
@@ -190,6 +193,7 @@ public class ChallengeMediaController : MonoBehaviour
     public void OnNoteMiss(int lane)
     {
         if (ended) return;
+        SFXManager.Instance?.PlayWrongAnswer();
         combo = 0;
         notesMissed++;
 
@@ -197,7 +201,7 @@ public class ChallengeMediaController : MonoBehaviour
             hitZones[lane].PlayMissFeedback();
 
         ShowFeedback("Miss", Color.gray);
-
+        UpdateUI();
         // Miss Ч только бары, без кольца
         MediaBackgroundController.Instance?.OnMiss(lane);
     }
@@ -423,9 +427,15 @@ public class ChallengeMediaController : MonoBehaviour
         if (resultWindow != null)
         {
             if (success)
+            {
+                SFXManager.Instance?.PlayWinResult();
                 resultWindow.ShowSuccess(notesHit, totalNotes, songTime);
+            }
             else
+            {
+                SFXManager.Instance?.PlayLossResult();
                 resultWindow.ShowFailure(notesHit, totalNotes, "low accuracy");
+            }
         }
         else
         {

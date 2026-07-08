@@ -22,7 +22,7 @@ MonoBehaviour:
   - 9
   - 4
   type: 5
-  iconItem: {fileID: -1028550570, guid: 184fb6f9b0b02bc4eabcdbe5e17c0641, type: 3}
+  iconItem: {fileID: 911884073, guid: 7feff69a13d21a84483daecd483dbe06, type: 3}
   iconBg: {fileID: -658136035, guid: 56d7ad2104486ae49aa22a5a65e8c7ad, type: 3}
   courseDescription: "\u0418\u043D\u0436\u0435\u043D\u0435\u0440 \u043F\u0440\u043E\u0435\u043A\u0442\u0438\u0440\u0443\u0435\u0442
     \u0442\u0435\u0445\u043D\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u044B

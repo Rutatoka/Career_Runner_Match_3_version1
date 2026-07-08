@@ -44,7 +44,7 @@ public class HappinessSystem : MonoBehaviour
         var canvas = GameObject.Find("Canvas");
         if (canvas != null)
         {
-            numGem = canvas.transform.Find("Happiness/NumGemTxt")?.GetComponent<TMP_Text>();
+            numGem = canvas.transform.Find("upUi/NumGemTxt")?.GetComponent<TMP_Text>();
         }
         UpdateUI();
     }

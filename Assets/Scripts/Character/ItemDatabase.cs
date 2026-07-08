@@ -16,13 +16,15 @@ public static class ItemDatabase
     {
         return new List<ShopItem>
         {
-                  new ShopItem("Красная футболка", "Яркий красный цвет", 50, "torso", Color.red),
+        new ShopItem("Красная футболка", "Яркий красный цвет", 50, "torso", Color.red),
         new ShopItem("Синяя футболка", "Спокойный синий", 50, "torso", Color.blue),
         new ShopItem("Зеленая футболка", "Свежий зеленый", 50, "torso", Color.green),
         new ShopItem("Черные штаны", "Строгий черный", 40, "pants", Color.black),
         new ShopItem("Синие джинсы", "Классические джинсы", 60, "pants", new Color(0.2f, 0.4f, 0.7f)),
         new ShopItem("Коричневые ботинки", "Кожаные ботинки", 80, "shoes", new Color(0.55f, 0.27f, 0.07f)),
-    
+        new ShopItem("Очки", "Стильные очки", 10, ShopItemType.Accessory, "Accessories/Glasses"),
+        new ShopItem("Шлем тыквы", "Тыковка", 10, ShopItemType.Accessory, "Accessories/Pumpkin"),
+        new ShopItem("Шлем доктора", "Чумной доктор", 10, ShopItemType.Accessory, "Accessories/PlagHead"),
     };
     }
 

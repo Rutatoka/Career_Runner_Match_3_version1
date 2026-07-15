@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6330429401007448342}
   - component: {fileID: -1346813144482184892}
   - component: {fileID: -6645560931839554761}
+  - component: {fileID: 7603147657644742881}
   m_Layer: 0
   m_Name: Gem
   m_TagString: Gem
@@ -85,6 +86,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   data: {fileID: 11400000, guid: 03a6160917bb8554587e8a0f4bf67a04, type: 2}
+--- !u!114 &7603147657644742881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591668209144185215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d798754aab3c408c0747521ab88ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+  originalPrefab: {fileID: 0}
 --- !u!1001 &2182525972254143092
 PrefabInstance:
   m_ObjectHideFlags: 0

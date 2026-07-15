@@ -3177,7 +3177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoostSpawner
   boostPrefab: {fileID: 7866419388764934083, guid: 125c32ada10d7204eac520c1859f6167, type: 3}
-  spawnChance: 0.56
+  spawnChance: 0.292
   spawnHeight: 0.1
   minZ: 3
   maxZ: 10

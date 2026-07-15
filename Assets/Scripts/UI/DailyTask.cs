@@ -10,7 +10,7 @@ public class DailyTask
     public int currentProgress;
     public int targetProgress;
     public int reward;
-    public bool isCompleted;
+    public bool isCompleted; // Теперь это строго означает: "Награда ЗАБРАНА"
 
     public DailyTask(string id, string title, string description, int current, int target, int reward)
     {
@@ -23,13 +23,15 @@ public class DailyTask
         this.isCompleted = false;
     }
 
-    public bool IsComplete => currentProgress >= targetProgress || isCompleted;
+    // Квест готов к сдаче, если прогресс дополз до максимума
+    public bool IsComplete => currentProgress >= targetProgress;
 
     public void AddProgress(int amount)
     {
-        if (IsComplete) return;
+        if (isCompleted) return; // Если награда уже забрана, прогресс больше не трогаем
+
         currentProgress = Mathf.Clamp(currentProgress + Mathf.Max(0, amount), 0, targetProgress);
-        if (currentProgress >= targetProgress) isCompleted = true;
+        // УБРАЛИ автоматический запуск isCompleted = true отсюда!
     }
 
     public void Reset()
@@ -41,7 +43,7 @@ public class DailyTask
     public void MarkCompleted()
     {
         isCompleted = true;
-        currentProgress = targetProgress;
+        currentProgress = targetProgress; // На всякий случай дотягиваем шкалу до топа
     }
 
     public static string MakeSafeId(string raw)

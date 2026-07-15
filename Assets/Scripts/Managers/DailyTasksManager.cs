@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class DailyTasksManager : MonoBehaviour
 {
+    public static DailyTasksManager Instance { get; private set; }
+
     [Header("UI")]
     public Transform tasksContainer;
     public GameObject taskPrefab;
@@ -16,40 +18,70 @@ public class DailyTasksManager : MonoBehaviour
 
     private const string LastDailyDateKey = "last_daily_date";
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
-        // Инициализация задач (можно заменить загрузкой из ScriptableObjects)
         tasks = GetDailyTasks();
+
+        // 1. Сбрасываем квесты, если наступил новый день
+        CheckDailyReset();
+
+        // 2. Загружаем сохраненный прогресс
+        LoadTasksProgress();
+
+        // 3. Строим UI
         CreateOrRefreshTaskUI();
 
-        // Синхронизируем прогресс с ItemPickupSystem (если есть)
-        var pickup = FindObjectOfType<ItemPickupSystem>();
-        if (pickup != null)
-        {
-            pickup.OnItemPicked += HandleItemPicked;
-        }
-
-        // Проверяем необходимость ресета по дате и запускаем таймер обновления UI
-        CheckDailyReset();
+        // Запускаем тиканье таймера обновления
         InvokeRepeating(nameof(UpdateTimerDisplay), 0f, 1f);
     }
 
     private void OnDestroy()
     {
         CancelInvoke(nameof(UpdateTimerDisplay));
-        var pickup = FindObjectOfType<ItemPickupSystem>();
-        if (pickup != null) pickup.OnItemPicked -= HandleItemPicked;
+        if (Instance == this) Instance = null;
     }
 
     private List<DailyTask> GetDailyTasks()
     {
-        // id, title, description, current, target, reward
         return new List<DailyTask>
         {
-            new DailyTask("pick_items", "Собери предметы", "Подбери 5 предметов", 0, 5, 50),
-            new DailyTask("watch_ad", "Купи предмет в магазине", "Купить 2 предмета одежды или аксессуара", 0, 2, 50),
-            new DailyTask("earn_coins", "Заработай монет", "Собери 50 монет", 0, 50, 75),
+            // Установили честные 15 предметов вместо 5!
+            new DailyTask("pick_items", "Собери предметы", "Подбери 15 предметов", 0, 15, 50),
+            new DailyTask("buy_item", "Купи предмет в магазине", "Купить 2 предмета одежды или аксессуара", 0, 2, 50),
+            new DailyTask("earn_coins", "Заработай монет", "Собери 50 монет", 0, 50, 75)
         };
+    }
+
+    private void LoadTasksProgress()
+    {
+        foreach (var task in tasks)
+        {
+            string progressKey = $"daily_{task.id}_progress";
+            string completedKey = $"daily_{task.id}_completed";
+
+            int savedProgress = PlayerPrefs.GetInt(progressKey, 0);
+            bool savedCompleted = PlayerPrefs.GetInt(completedKey, 0) == 1;
+
+            task.Reset();
+            task.AddProgress(savedProgress);
+
+            if (savedCompleted)
+            {
+                task.MarkCompleted();
+            }
+        }
     }
 
     private void CreateOrRefreshTaskUI()
@@ -60,7 +92,6 @@ public class DailyTasksManager : MonoBehaviour
             return;
         }
 
-        // Если UI ещё не созданы — создаём
         if (tasksContainer.childCount == 0)
         {
             taskUIs.Clear();
@@ -77,7 +108,7 @@ public class DailyTasksManager : MonoBehaviour
         }
         else
         {
-            // Привязываем существующие UI к задачам
+            taskUIs.Clear();
             int i = 0;
             foreach (Transform child in tasksContainer)
             {
@@ -91,71 +122,82 @@ public class DailyTasksManager : MonoBehaviour
             }
         }
 
-        // Загружаем прогресс из PlayerPrefs (внутри UI)
         RefreshAllUI();
     }
 
-    private void HandleItemPicked(ItemData item)
+    // Статический метод для вызова из других сцен (без авто-выдачи наград!)
+    public static void AddProgress(string idOrTitle, int amount = 1)
     {
-        // Пример: любое подобранное collectible увеличивает прогресс задачи "pick_items"
-        AddProgressToTask("pick_items", 1);
+        string targetId = ResolveId(idOrTitle);
+        if (string.IsNullOrEmpty(targetId)) return;
+
+        // Если мы на сцене дейликов — обновляем UI в реальном времени
+        if (Instance != null)
+        {
+            Instance.AddProgressToTask(targetId, amount);
+            return;
+        }
+
+        // Если мы на другой сцене — просто пишем в сейвы без всяких авто-выдач
+        string completedKey = $"daily_{targetId}_completed";
+        if (PlayerPrefs.GetInt(completedKey, 0) == 1) return; // Награда уже была забрана ранее
+
+        string progressKey = $"daily_{targetId}_progress";
+        int current = PlayerPrefs.GetInt(progressKey, 0);
+        int target = GetTargetForId(targetId);
+
+        current = Mathf.Min(current + amount, target);
+        PlayerPrefs.SetInt(progressKey, current);
+        PlayerPrefs.Save();
     }
 
     public void AddProgressToTask(string idOrTitle, int amount = 1)
     {
-        if (string.IsNullOrEmpty(idOrTitle)) return;
+        string targetId = ResolveId(idOrTitle);
+        var task = tasks.Find(t => string.Equals(t.id, targetId, StringComparison.OrdinalIgnoreCase));
 
-        var task = tasks.Find(t => string.Equals(t.id, idOrTitle, StringComparison.OrdinalIgnoreCase)
-                                 || string.Equals(t.title, idOrTitle, StringComparison.OrdinalIgnoreCase));
-        if (task == null) return;
-        if (task.isCompleted) return;
+        if (task == null || task.isCompleted) return;
 
         task.AddProgress(amount);
         SaveTaskProgress(task);
         RefreshAllUI();
 
-        // Если задача завершилась — автоматически начисляем награду и помечаем
-        if (task.IsComplete && !task.isCompleted)
-        {
-            task.MarkCompleted();
-            SaveTaskProgress(task);
-            ClaimTaskReward(task);
-        }
+        // ВНИМАНИЕ: Из этого метода ПОЛНОСТЬЮ вырезана авто-выдача наград.
+        // Игрок просто увидит заполненную шкалу и активную кнопку "Забрать".
     }
 
+    // Этот метод срабатывает ТОЛЬКО тогда, когда игрок кликает по кнопке в UI!
     private void OnTaskClaimed(DailyTask task)
     {
         if (task == null) return;
-        if (!task.isCompleted) return;
+        if (!task.IsComplete) return; // Ещё не накопил нужное количество
+        if (task.isCompleted) return; // Уже нажал кнопку и забрал ранее
 
-        ClaimTaskReward(task);
+        // 1. Помечаем выполненным в памяти
+        task.MarkCompleted();
+
+        // 2. Сохраняем статус выполненности в сейв
         SaveTaskProgress(task);
+
+        // 3. Выдаем гемы в SaveSystem
+        ClaimTaskReward(task);
+
+        // 4. Обновляем UI (кнопка исчезнет / сменится галочкой)
         RefreshAllUI();
     }
 
     private void ClaimTaskReward(DailyTask task)
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.AddGems(task.reward);
-            Debug.Log($"DailyTasksManager: awarded {task.reward} gems for {task.title}");
-            HeaderFooterManager.Instance?.Refresh();
-        }
-        else
-        {
-            // Fallback: use SaveSystem
-            SaveSystem.AddGems(task.reward);
-            Debug.Log($"DailyTasksManager: (fallback) awarded {task.reward} gems for {task.title}");
-        }
+        SaveSystem.AddGems(task.reward);
+        Debug.Log($"DailyTasksManager: Игрок вручную забрал {task.reward} гемов за '{task.title}'!");
+        HeaderFooterManager.Instance?.Refresh();
     }
 
     private void SaveTaskProgress(DailyTask task)
     {
         if (task == null) return;
-        string progressKey = $"daily_{task.id}_progress";
-        string completedKey = $"daily_{task.id}_completed";
-        PlayerPrefs.SetInt(progressKey, task.currentProgress);
-        PlayerPrefs.SetInt(completedKey, task.isCompleted ? 1 : 0);
+        PlayerPrefs.SetInt($"daily_{task.id}_progress", task.currentProgress);
+        PlayerPrefs.SetInt($"daily_{task.id}_completed", task.isCompleted ? 1 : 0);
         PlayerPrefs.Save();
     }
 
@@ -177,7 +219,6 @@ public class DailyTasksManager : MonoBehaviour
         if (timerText != null)
             timerText.text = $"Обновление: {remaining.Hours:D2}:{remaining.Minutes:D2}:{remaining.Seconds:D2}";
 
-        // Если дата сменилась — ресетим
         string lastDate = PlayerPrefs.GetString(LastDailyDateKey, "");
         string today = DateTime.Now.ToString("yyyy-MM-dd");
         if (lastDate != today)
@@ -192,11 +233,16 @@ public class DailyTasksManager : MonoBehaviour
         string today = DateTime.Now.ToString("yyyy-MM-dd");
         if (lastDate == today) return;
 
+        var tempTasks = GetDailyTasks();
+        foreach (var task in tempTasks)
+        {
+            PlayerPrefs.SetInt($"daily_{task.id}_progress", 0);
+            PlayerPrefs.SetInt($"daily_{task.id}_completed", 0);
+        }
+
         foreach (var task in tasks)
         {
             task.Reset();
-            PlayerPrefs.SetInt($"daily_{task.id}_progress", 0);
-            PlayerPrefs.SetInt($"daily_{task.id}_completed", 0);
         }
 
         PlayerPrefs.SetString(LastDailyDateKey, today);
@@ -204,4 +250,45 @@ public class DailyTasksManager : MonoBehaviour
 
         RefreshAllUI();
     }
+
+    #region Вспомогательные статические методы
+
+    private static string ResolveId(string idOrTitle)
+    {
+        if (string.IsNullOrEmpty(idOrTitle)) return null;
+        string lower = idOrTitle.ToLower().Trim();
+
+        if (lower == "pick_items" || lower == "собери предметы" || lower == "собери_предметы")
+            return "pick_items";
+        if (lower == "buy_item" || lower == "купи предмет в магазине" || lower == "купить 2 предмета одежды или аксессуара" || lower == "watch_ad")
+            return "buy_item";
+        if (lower == "earn_coins" || lower == "заработай монет" || lower == "заработай_монет")
+            return "earn_coins";
+
+        return idOrTitle;
+    }
+
+    private static int GetTargetForId(string id)
+    {
+        return id switch
+        {
+            "pick_items" => 15, // Здесь теперь тоже гордые 15!
+            "buy_item" => 2,
+            "earn_coins" => 50,
+            _ => 100
+        };
+    }
+
+    private static int GetRewardForId(string id)
+    {
+        return id switch
+        {
+            "pick_items" => 50,
+            "buy_item" => 50,
+            "earn_coins" => 75,
+            _ => 0
+        };
+    }
+
+    #endregion
 }

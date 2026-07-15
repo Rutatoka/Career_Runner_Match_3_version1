@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4729512034939473874}
   - component: {fileID: -3084004810123346791}
   - component: {fileID: -3604030037267685846}
+  - component: {fileID: 3990191046044345351}
   m_Layer: 5
   m_Name: Profession_IT
   m_TagString: Untagged
@@ -112,8 +113,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProfessionObject
   data: {fileID: 11400000, guid: ea935b1e68abd134ba204ba7f6a677b0, type: 2}
-  autoAssignColor: 1
-  autoAssignName: 1
+--- !u!114 &3990191046044345351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343628483548010810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d798754aab3c408c0747521ab88ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+  originalPrefab: {fileID: 0}
 --- !u!1 &4159041026711193760
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,32 +39,10 @@ public class DailyTaskUI : MonoBehaviour
         if (titleText != null) titleText.text = currentTask.title;
         if (descriptionText != null) descriptionText.text = currentTask.description;
 
-        LoadPersistedState();
+        // ВЫРЕЗАЛИ LoadPersistedState()! 
+        // Менеджер уже загрузил все актуальные данные при старте сцены.
+
         RefreshAll();
-    }
-
-    private void LoadPersistedState()
-    {
-        if (currentTask == null) return;
-        string progressKey = $"daily_{currentTask.id}_progress";
-        string completedKey = $"daily_{currentTask.id}_completed";
-
-        if (PlayerPrefs.HasKey(progressKey))
-            currentTask.currentProgress = PlayerPrefs.GetInt(progressKey, currentTask.currentProgress);
-
-        if (PlayerPrefs.HasKey(completedKey))
-            currentTask.isCompleted = PlayerPrefs.GetInt(completedKey, 0) == 1;
-    }
-
-    private void PersistState()
-    {
-        if (currentTask == null) return;
-        string progressKey = $"daily_{currentTask.id}_progress";
-        string completedKey = $"daily_{currentTask.id}_completed";
-
-        PlayerPrefs.SetInt(progressKey, currentTask.currentProgress);
-        PlayerPrefs.SetInt(completedKey, currentTask.isCompleted ? 1 : 0);
-        PlayerPrefs.Save();
     }
 
     public void RefreshAll()
@@ -73,12 +51,14 @@ public class DailyTaskUI : MonoBehaviour
         UpdateUI();
     }
 
+    // Оставляем методы изменения прогресса на случай, если ты дергаешь их напрямую откуда-то еще
     public void RefreshProgress(int newProgress)
     {
         if (currentTask == null) return;
         currentTask.currentProgress = Mathf.Clamp(newProgress, 0, currentTask.targetProgress);
-        if (currentTask.currentProgress >= currentTask.targetProgress) currentTask.isCompleted = true;
-        PersistState();
+
+        PlayerPrefs.SetInt($"daily_{currentTask.id}_progress", currentTask.currentProgress);
+        PlayerPrefs.Save();
         UpdateUI();
     }
 
@@ -86,7 +66,9 @@ public class DailyTaskUI : MonoBehaviour
     {
         if (currentTask == null || currentTask.isCompleted) return;
         currentTask.AddProgress(amount);
-        PersistState();
+
+        PlayerPrefs.SetInt($"daily_{currentTask.id}_progress", currentTask.currentProgress);
+        PlayerPrefs.Save();
         UpdateUI();
     }
 
@@ -94,37 +76,44 @@ public class DailyTaskUI : MonoBehaviour
     {
         if (currentTask == null) return;
 
+        // Обновляем текст прогресса (например, 5/15)
         if (progressText != null)
             progressText.text = $"{currentTask.currentProgress}/{currentTask.targetProgress}";
 
+        // Двигаем слайдер
         if (progressSlider != null)
         {
             progressSlider.maxValue = Mathf.Max(1, currentTask.targetProgress);
             progressSlider.value = Mathf.Clamp(currentTask.currentProgress, 0, currentTask.targetProgress);
         }
 
-        bool complete = currentTask.IsComplete;
+        bool isTargetReached = currentTask.IsComplete; // Шкала заполнена?
+        bool isClaimed = currentTask.isCompleted;      // Кнопка забора уже нажималась?
 
+        // Показываем галочку "Выполнено" только если награда РЕАЛЬНО ЗАБРАНА игроком
         if (completedBadge != null)
-            completedBadge.SetActive(currentTask.isCompleted);
+            completedBadge.SetActive(isClaimed);
 
+        // Кнопка активна и видна, пока награда НЕ забрана
         if (claimButton != null)
-            claimButton.gameObject.SetActive(!currentTask.isCompleted);
+            claimButton.gameObject.SetActive(!isClaimed);
 
-        if (claimButtonText != null)
+        if (claimButtonText != null && claimButton != null)
         {
-            if (currentTask.isCompleted)
+            if (isClaimed)
             {
                 claimButtonText.text = "Получено";
                 claimButton.interactable = false;
             }
-            else if (complete)
+            else if (isTargetReached)
             {
+                // Ура! Квест выполнен, кнопка загорается сочным призывом к действию
                 claimButtonText.text = $"Получить {currentTask.reward}";
                 claimButton.interactable = true;
             }
             else
             {
+                // Еще плестись и плестись до выполнения...
                 claimButtonText.text = $"Награда: {currentTask.reward}";
                 claimButton.interactable = false;
             }
@@ -134,14 +123,14 @@ public class DailyTaskUI : MonoBehaviour
     private void OnClaimClicked()
     {
         if (currentTask == null) return;
-        if (currentTask.isCompleted) return;
-        if (currentTask.currentProgress < currentTask.targetProgress) return;
-        SFXManager.Instance?.PlayBueItem();
+        if (currentTask.isCompleted) return; // Уже забирали награду
+        if (!currentTask.IsComplete) return; // Еще не доползли до цели
 
-        currentTask.MarkCompleted();
-        PersistState();
-        UpdateUI();
+        SFXManager.Instance?.PlayBueItem(); // Проигрываем твой любимый звук
 
+        // ВЫРЕЗАЛИ ручное изменение флага и сохранение отсюда!
+        // Теперь мы просто рапортуем менеджеру наверх: "Эй, игрок нажал 'Забрать'!".
+        // Менеджер сам пометит статус, начислит валюту, сохранит и скажет обновить UI.
         try
         {
             onClaimed?.Invoke(currentTask);

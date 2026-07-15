@@ -111,6 +111,8 @@ public class ShopItemUI : MonoBehaviour
         {
             MarkAsOwned();
             UpdateUI();
+            // Игрок купил шмотку — полетело в прогресс дейлика!
+            DailyTasksManager.AddProgress("buy_item", 1);
             SFXManager.Instance?.PlayBueItem();
 
             if (HeaderFooterManager.Instance != null)

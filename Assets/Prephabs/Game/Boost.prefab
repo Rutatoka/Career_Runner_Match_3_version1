@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6306992531869994241}
   - component: {fileID: -3142260432970321817}
   - component: {fileID: -682855300391367294}
+  - component: {fileID: -7475963697659388003}
   m_Layer: 0
   m_Name: Boost
   m_TagString: Collectible
@@ -90,6 +91,19 @@ MonoBehaviour:
   speedMultiplier: 2
   scoreMultiplier: 2
   duration: 2
+--- !u!114 &-7475963697659388003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866419388764934083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d798754aab3c408c0747521ab88ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+  originalPrefab: {fileID: 0}
 --- !u!1001 &6522626349098188683
 PrefabInstance:
   m_ObjectHideFlags: 0

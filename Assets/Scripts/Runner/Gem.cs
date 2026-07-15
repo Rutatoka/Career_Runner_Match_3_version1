@@ -71,23 +71,27 @@ public class Gem : MonoBehaviour
     public void Collect()
     {
         if (collected) return;
-        SFXManager.Instance?.PlayCoin();
         collected = true;
+
+        SFXManager.Instance?.PlayCoin();
+
+        // Определяем ценность монетки. Если есть система счастья — берём её значение,
+        // если нет (вдруг мы тестируем сцену отдельно) — дефолтное значение гемов.
+        int valueToAdd = (HappinessSystem.Instance != null) ? happinessValue : gemValue;
 
         if (HappinessSystem.Instance != null)
         {
-            HappinessSystem.Instance.Add(happinessValue);
-           // Debug.Log("gem dobavlen. collect in gem");
+            // Система счастья сама добавит гемы в SaveSystem и красиво обновит UI
+            HappinessSystem.Instance.Add(valueToAdd);
         }
         else
         {
-            SaveSystem.AddGems(gemValue);
+            // Если системы счастья на сцене нет, просто тихо пишем в сейв
+            SaveSystem.AddGems(valueToAdd);
         }
 
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.UpdateDailyTaskProgress("earn_coins", 1);
-        }
+        // Засчитываем прогресс в дейлик ОДИН раз. Никакой халявы!
+        DailyTasksManager.AddProgress("earn_coins", 1);
 
         TryDespawnOrDestroy();
     }

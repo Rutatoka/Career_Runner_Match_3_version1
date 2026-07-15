@@ -48,7 +48,31 @@ public class TileObjectSpawner : MonoBehaviour
     {
         professionZPositions.RemoveAll(z => currentZ - z > 60f);
     }
+    // 1. Добавляем в TileObjectSpawner новый метод спавна монет по центру
+    private void SpawnCollectiblesOnProfessionTile(Transform tile, TileLaneState state)
+    {
+        if (collectibleSpawner == null) return;
 
+        var requests = collectibleSpawner.GetRequests(tile);
+        if (requests == null || requests.Count == 0) return;
+
+        int centerLane = laneCount / 2; // Для 3 линий это будет ровно 1 (центр)
+        int count = 0;
+
+        foreach (var req in requests)
+        {
+            if (count >= maxCollectiblesPerTile) break;
+
+            // Проверяем, свободно ли это место по Z в центральном ряду
+            if (state.IsFreeAtZ(centerLane, req.zOffset, 2f))
+            {
+                SpawnAtLane(tile, state, req, centerLane);
+                count++;
+            }
+        }
+    }
+
+    // 2. Обновляем метод SpawnAll в TileObjectSpawner
     public void SpawnAll(Transform tile, float tileWorldZ)
     {
         globalTileCounter++;
@@ -74,9 +98,12 @@ public class TileObjectSpawner : MonoBehaviour
         if (isProfessionTile)
         {
             SpawnProfessions(tile, state, tileWorldZ);
-            return;       
+            // Вместо глухого ухода в закат, спавним монетки по центру!
+            SpawnCollectiblesOnProfessionTile(tile, state);
+            return;
         }
 
+        // Обычный спавн для не-профессиональных плиток
         SpawnCollectibles(tile, state, tileWorldZ);
         SpawnBoost(tile, state, tileWorldZ);
         SpawnPowerUp(tile, state, tileWorldZ);
@@ -211,8 +238,16 @@ public class TileObjectSpawner : MonoBehaviour
 
     private void SpawnCollectibles(Transform tile, TileLaneState state, float tileWorldZ)
     {
+        // 1. Сначала спавним монеты через модульный CollectibleSpawner (если он настроен)
         var requests = collectibleSpawner.GetRequests(tile);
-        SpawnRequests(tile, state, requests, maxCollectiblesPerTile, true);   
+        SpawnRequests(tile, state, requests, maxCollectiblesPerTile, true);
+
+        // 2. А теперь пинаем старый Tile.cs, если он висит на префабе плитки
+        var oldTileScript = tile.GetComponent<Tile>();
+        if (oldTileScript != null)
+        {
+            oldTileScript.TrySpawnGem();
+        }
     }
 
     private void SpawnBoost(Transform tile, TileLaneState state, float tileWorldZ)

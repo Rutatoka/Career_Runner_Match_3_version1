@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 704012870644991970}
   - component: {fileID: -6996095981997462111}
   - component: {fileID: -1396898811446259578}
+  - component: {fileID: 4108631544537169656}
   m_Layer: 0
   m_Name: Profession_Analytics
   m_TagString: Untagged
@@ -74,8 +75,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProfessionObject
   data: {fileID: 11400000, guid: 8ce87854b367bc345b065efcf879bd88, type: 2}
-  autoAssignColor: 1
-  autoAssignName: 1
 --- !u!33 &-6996095981997462111
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -133,6 +132,19 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4108631544537169656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336773941178181807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d798754aab3c408c0747521ab88ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+  originalPrefab: {fileID: 0}
 --- !u!1 &6286686284752774817
 GameObject:
   m_ObjectHideFlags: 0

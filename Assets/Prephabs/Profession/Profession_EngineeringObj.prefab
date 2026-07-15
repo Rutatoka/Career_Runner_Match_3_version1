@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 149752569045686631}
   - component: {fileID: 6157184837804213688}
   - component: {fileID: 892216835214515142}
+  - component: {fileID: -4737770021088654239}
   m_Layer: 0
   m_Name: Profession_EngineeringObj
   m_TagString: Untagged
@@ -69,6 +70,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProfessionObject
   data: {fileID: 11400000, guid: 1bb3fac657fa12147b39dc6d402acfdf, type: 2}
+--- !u!114 &-4737770021088654239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631475293154632723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d798754aab3c408c0747521ab88ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+  originalPrefab: {fileID: 0}
 --- !u!1 &6532725867110620844
 GameObject:
   m_ObjectHideFlags: 0

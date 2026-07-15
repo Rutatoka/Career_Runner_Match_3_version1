@@ -103,7 +103,8 @@ public class ProfessionObject : MonoBehaviour
             Debug.LogError("[ProfessionObject] Data is null!");
             return;
         }
-
+        // »грок подобрал предмет Ч засчитываем в дейлики!
+        DailyTasksManager.AddProgress("pick_items", 1);
         // ќтключаем все коллайдеры
         DisableAllColliders();
 

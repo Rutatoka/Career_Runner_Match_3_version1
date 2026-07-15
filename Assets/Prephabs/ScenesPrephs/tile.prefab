@@ -795,6 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937456806545049652}
   - component: {fileID: 2315009184097642767}
+  - component: {fileID: -4682069632617092789}
   m_Layer: 0
   m_Name: tile
   m_TagString: Untagged
@@ -846,6 +847,19 @@ MonoBehaviour:
   laneCount: 3
   laneDistance: 2.5
   spawnHeight: 1
+--- !u!114 &-4682069632617092789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338353496549509181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d798754aab3c408c0747521ab88ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PooledObject
+  originalPrefab: {fileID: 0}
 --- !u!1 &5550557955760491465
 GameObject:
   m_ObjectHideFlags: 0

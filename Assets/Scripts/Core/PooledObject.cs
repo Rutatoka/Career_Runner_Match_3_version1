@@ -1,21 +1,11 @@
-// PooledObject.cs
 using UnityEngine;
 
-/// <summary>
-/// Помечает инстанс как принадлежащий пулу и хранит ссылку на оригинальный prefab.
-/// </summary>
 public class PooledObject : MonoBehaviour
 {
-    [Tooltip("Original prefab reference used as pool key")]
-    public GameObject originalPrefab;
+    [HideInInspector]
+    public GameObject originalPrefab; // Ссылка на префаб-родитель, чтобы пул знал, куда возвращать объект
 
-    public virtual void OnSpawned()
-    {
-        // override to reset state
-    }
-
-    public virtual void OnDespawned()
-    {
-        // override to cleanup
-    }
+    // Эти методы можно оставить пустыми, но они пригодятся, если захочешь сбрасывать состояние объекта
+    public void OnSpawned() { }
+    public void OnDespawned() { }
 }

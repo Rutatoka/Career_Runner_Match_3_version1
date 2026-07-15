@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Карьерный Раннер | Интерактивный поиск призвания</title>
+  <style>
+    /* Базовый сброс и шрифты */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100dvh;
+      background-color: #050508;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #e2e8f0;
+      overflow: hidden;
+    }
+
+    /* Фиксированный неоновый хедер с названием */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: rgba(5, 5, 8, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+      box-shadow: 0 4px 24px rgba(157, 78, 221, 0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px; /* Минимальный зазор из-за невидимых полей логотипа */
+      z-index: 100;
+    }
+
+    /* Контейнер-обертка для логотипа, чтобы компенсировать прозрачные поля */
+    .logo-wrapper {
+      height: 80px;
+      width: 150px; 
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-logo {
+      height: 180px; 
+      width: auto;
+      object-fit: contain;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(0 0 10px rgba(157, 78, 221, 0.5));
+    }
+
+    .header-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(157, 78, 221, 0.6), 0 0 20px rgba(0, 180, 216, 0.3);
+      font-family: monospace, sans-serif;
+    }
+
+    /* Главный контейнер лендинга с учетом высоты хедера */
+    #landing-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 110px 20px 60px 20px; 
+      height: 100dvh;
+      overflow-y: auto;
+      background: radial-gradient(circle at top, #140b29 0%, #050508 80%);
+    }
+
+    #landing-page::-webkit-scrollbar {
+      width: 6px;
+    }
+    #landing-page::-webkit-scrollbar-track {
+      background: #050508;
+    }
+    #landing-page::-webkit-scrollbar-thumb {
+      background: #9d4edd;
+      border-radius: 3px;
+    }
+
+    /* Шапка проекта */
+    .brand-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #ae15ff;
+      text-shadow: 0 0 10px rgba(174, 21, 255, 0.5);
+      margin-bottom: 5px;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #00b4d8;
+      text-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* Мобильный варнинг */
+    .device-recommendation {
+      background: rgba(0, 180, 216, 0.05);
+      border: 1px solid rgba(0, 180, 216, 0.3);
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      color: #00b4d8;
+      text-shadow: 0 0 8px rgba(0, 180, 216, 0.3);
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 35px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px rgba(0, 180, 216, 0.1); }
+      100% { box-shadow: 0 0 15px rgba(0, 180, 216, 0.3); }
+    }
+
+    /* Сетка контента */
+    .content-grid {
+      width: 100%;
+      max-width: 550px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Стильные карточки */
+    .info-card {
+      background: rgba(13, 13, 20, 0.85);
+      border-left: 4px solid #ae15ff;
+      border-top: 1px solid rgba(174, 21, 255, 0.15);
+      border-right: 1px solid rgba(174, 21, 255, 0.15);
+      border-bottom: 1px solid rgba(174, 21, 255, 0.15);
+      border-radius: 0 12px 12px 0;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    .info-card.blue-border {
+      border-left-color: #00b4d8;
+      border-top-color: rgba(0, 180, 216, 0.15);
+      border-right-color: rgba(0, 180, 216, 0.15);
+      border-bottom-color: rgba(0, 180, 216, 0.15);
+    }
+
+    .info-card h3 {
+      margin: 0 0 12px 0;
+      color: #fff;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    .info-card p strong {
+      color: #fff;
+    }
+
+    /* Профиль разработчика */
+    .dev-profile {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .dev-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .meta-item {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .meta-item span {
+      display: block;
+      font-size: 0.75rem;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    /* Социальные сети разработчика */
+    .dev-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .social-link {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .social-link.tg {
+      background: rgba(0, 136, 204, 0.07);
+      border: 1px solid rgba(0, 136, 204, 0.4);
+      color: #0088cc;
+      text-shadow: 0 0 8px rgba(0, 136, 204, 0.3);
+    }
+
+    .social-link.tg:hover {
+      background: rgba(0, 136, 204, 0.2);
+      box-shadow: 0 0 15px rgba(0, 136, 204, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .social-link.vk {
+      background: rgba(0, 119, 255, 0.07);
+      border: 1px solid rgba(0, 119, 255, 0.4);
+      color: #0077ff;
+      text-shadow: 0 0 8px rgba(0, 119, 255, 0.3);
+    }
+
+    .social-link.vk:hover {
+      background: rgba(0, 119, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 119, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      transition: transform 0.3s ease;
+    }
+
+    .social-link:hover svg {
+      transform: scale(1.1);
+    }
+
+    /* Кнопка действия */
+    .cta-container {
+      width: 100%;
+      max-width: 550px;
+      margin-top: 15px;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #ae15ff 0%, #0077b6 100%);
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+      padding: 20px 40px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(157, 78, 221, 0.4);
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+    }
+
+    .cta-button:active {
+      transform: scale(0.96);
+      box-shadow: 0 0 15px rgba(157, 78, 221, 0.6);
+    }
+
+    /* Контейнер для игры */
+    #game-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100dvh;
+      background: #000;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    #unity-canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    /* Экран загрузки */
+    #loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #050508;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease;
+      padding: 24px;
+    }
+
+    /* Слайдер загрузки */
+    .progress-container {
+      width: 85%;
+      max-width: 380px;
+      height: 14px;
+      background: rgba(0, 180, 216, 0.05);
+      border: 1px solid rgba(0, 180, 216, 0.3);
+      border-radius: 7px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 180, 216, 0.1);
+      margin-top: 25px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00b4d8, #ae15ff);
+      box-shadow: 0 0 15px rgba(0, 180, 216, 0.8);
+      transition: width 0.15s ease-out;
+    }
+
+    .progress-text {
+      margin-top: 15px;
+      color: #00b4d8;
+      font-weight: bold;
+      font-size: 1rem;
+      text-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+      font-family: monospace;
+    }
+
+    /* Сноска о долгой загрузке */
+    .loading-time-hint {
+      color: #64748b;
+      font-size: 0.8rem;
+      margin-top: 15px;
+      text-align: center;
+      max-width: 340px;
+      line-height: 1.4;
+      font-style: italic;
+      animation: pulse-hint 1.5s infinite alternate;
+    }
+
+    @keyframes pulse-hint {
+      0% { opacity: 0.6; }
+      100% { opacity: 0.95; }
+    }
+
+    /* Предупреждение сейвов */
+    .save-warning-box {
+      margin-top: 45px;
+      width: 100%;
+      max-width: 380px;
+      background: rgba(174, 21, 255, 0.03);
+      border: 1px dashed rgba(174, 21, 255, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(174, 21, 255, 0.05);
+    }
+
+    .save-warning-title {
+      color: #ae15ff;
+      font-weight: bold;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .save-warning-desc {
+      color: #94a3b8;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ФИКСИРОВАННЫЙ ХЕДЕР С ЛОГОТИПОМ И НАЗВАНИЕМ -->
+  <header class="site-header">
+    <div class="logo-wrapper">
+      <img src="MyLogo.png" alt="Логотип LunAV" class="header-logo">
+    </div>
+    <span class="header-title">LunAV // РАЗРАБОТКА</span>
+  </header>
+
+  <!-- ЛЕНДИНГ С ОПИСАНИЕМ -->
+  <div id="landing-page">
+    <div class="brand-badge">Проекты LunAV</div>
+    <h1 class="hero-title">Карьерный Раннер</h1>
+    <div class="hero-subtitle">Интерактивный поиск призвания</div>
+
+    <!-- Рекомендация девайса -->
+    <div class="device-recommendation">
+      📱 Рекомендуется играть с телефона
+    </div>
+
+    <div class="content-grid">
+      <!-- Блок об авторе -->
+      <div class="info-card">
+        <h3>⚡ Разработчик</h3>
+        <div class="dev-profile">
+          <p>Привет! Я <strong>Ангелина Лунина (LunAV)</strong>. В свои 24 года я совмещаю коммерческую разработку игр на Unity с преподаванием ИТ-дисциплин. Уже 5 лет я профессионально объясняю людям, как устроен геймдев и как писать чистый, красивый ООП-код без боли в компиляторе. Моя цель — создавать проекты, которые не просто развлекают, но и приносят реальную пользу.</p>
+          
+          <div class="dev-meta">
+            <div class="meta-item">
+              <span>Специализация</span>
+              Unity / C# / Геймдизайн
+            </div>
+            <div class="meta-item">
+              <span>Опыт обучения</span>
+              5 лет лекторской практики
+            </div>
+          </div>
+
+          <!-- КНОПКИ СОЦСЕТЕЙ -->
+          <div class="dev-socials">
+            <a href="https://t.me/gelatinius" class="social-link tg" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.12.89-.62 3.84-.88 5.22-.11.58-.33.78-.54.8-.45.04-.79-.3-.1.23-.74-.48-1.16-.73-1.89-1.22-.84-.55-.3-.85.18-1.51.13-.17 2.34-2.14 2.38-2.32.01-.02.01-.1-.05-.15-.06-.05-.14-.03-.2-.02-.09.02-1.49.95-4.22 2.79-.4.28-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.78-1.16 3.35-1.36 3.73-1.37.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .28z"/></svg>
+              Telegram
+            </a>
+            <a href="https://vk.com/ruta_chan" class="social-link vk" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.03 2H8.97C3.47 2 2 3.47 2 8.97v6.06C2 20.53 3.47 22 8.97 22h6.06c5.5 0 6.97-1.47 6.97-6.97V8.97C22 3.47 20.53 2 15.03 2zm3.36 12.23h-1.37c-.52 0-.68-.42-1.61-1.34-.82-.79-1.18-.89-1.37-.89-.27 0-.35.08-.35.46v1.17c0 .35-.11.6-1 .6-1.48 0-3.13-.9-4.28-2.54-1.72-2.42-2.19-4.25-2.19-4.6 0-.21.08-.41.51-.41h1.37c.38 0 .52.17.67.55.67 1.95 1.79 3.65 2.25 3.65.17 0 .25-.08.25-.51V9.58c-.06-1.02-.61-1.11-.61-1.48 0-.17.14-.35.43-.35h2.15c.36 0 .48.19.48.56V11.3c0 .3.14.4.23.4.17 0 .31-.1.62-.41.98-1.12 1.71-2.82 1.71-2.82.1-.22.28-.39.67-.39h1.37c.41 0 .5.2.42.51-.18.84-1.95 3.33-1.95 3.33-.18.28-.25.41 0 .73.18.24.8 1.13 1.48 1.95.51.62.9 1.14 1 1.48.12.35-.1.54-.52.54z"/></svg>
+              VKontakte
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Цель и Актуальность -->
+      <div class="info-card blue-border">
+        <h3>🎯 Цель и Актуальность</h3>
+        <p>Надоели душные психологические тесты на 100 вопросов, которые в итоге советуют стать «космонавтом» или «бухгалтером»? Нам тоже. <strong>Карьерный Раннер</strong> — это игровой метод профориентации. Игра анализирует твои неосознанные выборы прямо во время бега. Время замедляется, чтобы дать тебе подумать, какие сферы тебя реально привлекают на интуитивном уровне.</p>
+      </div>
+
+      <!-- Как это работает -->
+      <div class="info-card">
+        <h3>🎮 Как устроен геймплей?</h3>
+        <p>Беги по трехполосной трассе, собирай объекты своей сферы. Заполнил 3 ячейки подряд? Влетай в неоновый портал и проходи микро-испытание профессии. После серии забегов наш алгоритм <strong>PreferenceAnalyzer</strong> соберет скрытую телеметрию твоих решений и выдаст точную рекомендацию, а также бесшовный переход на профильные курсы от университета «Синергия».</p>
+      </div>
+    </div>
+
+    <div class="cta-container">
+      <button class="cta-button" id="launch-btn">Начать забег</button>
+    </div>
+  </div>
+
+  <!-- ИГРОВОЙ ЭКРАН -->
+  <div id="game-container">
+    <div id="loading-overlay">
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+      <div class="progress-text">Инициализация...</div>
+      
+      <!-- НОВАЯ ПОМЕТКА О ЗАГРУЗКЕ -->
+      <div class="loading-time-hint">
+        * Загрузка объемных игровых ресурсов может занять некоторое время (особенно при первом запуске). Пожалуйста, не закрывайте страницу.
+      </div>
+
+      <div class="save-warning-box">
+        <div class="save-warning-title">⚠️ Сохранение данных</div>
+        <p class="save-warning-desc">Прогресс вашего прохождения автоматически сохраняется в локальной базе данных браузера (IndexedDB). Если вы очистите историю, кэш или будете играть в режиме инкогнито — ваши ачивки и открытые профессии испарятся.</p>
+      </div>
+    </div>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+  </div>
+
+  <!-- ПОДКЛЮЧАЕМ ЛОАДЕР -->
+  <script src="Build/bin.loader.js"></script>
+  <script>
+    const launchBtn = document.getElementById('launch-btn');
+    const gameContainer = document.getElementById('game-container');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const progressBar = document.querySelector('.progress-bar');
+    const progressText = document.querySelector('.progress-text');
+
+    launchBtn.addEventListener('click', () => {
+      gameContainer.style.display = 'block';
+
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        arguments: [],
+        dataUrl: "Build/bin.data.unityweb",
+        frameworkUrl: "Build/bin.framework.js.unityweb",
+        codeUrl: "Build/bin.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "LunAV",
+        productName: "Ранер Карьеры",
+        productVersion: "0.1.0",
+      }, (progress) => {
+        const percentage = Math.round(progress * 100);
+        progressBar.style.width = percentage + "%";
+        progressText.innerText = "Сборка ресурсов: " + percentage + "%";
+      }).then((unityInstance) => {
+        loadingOverlay.style.opacity = 0;
+        setTimeout(() => {
+          loadingOverlay.style.display = 'none';
+        }, 500);
+
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+          unityInstance.SetFullscreen(1);
+        }
+      }).catch((message) => {
+        alert("Ошибка инициализации WebGL: " + message);
+      });
+    });
+  </script>
+</body>
+</html>

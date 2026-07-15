@@ -212,7 +212,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 169.89786, y: 0}
+  m_SizeDelta: {x: 169.89786, y: 120.234665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &284162502
 MonoBehaviour:
@@ -2296,10 +2296,10 @@ RectTransform:
   - {fileID: 1371729372}
   m_Father: {fileID: 1629749933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.8382222, y: 0.3022917}
-  m_AnchorMax: {x: 1, y: 0.48700002}
-  m_AnchoredPosition: {x: -3.1208496, y: 10.877808}
-  m_SizeDelta: {x: 3.291687, y: 6.063965}
+  m_AnchorMin: {x: 0.5, y: 0.1624375}
+  m_AnchorMax: {x: 0.95500004, y: 0.223}
+  m_AnchoredPosition: {x: -9.070007, y: -5.369995}
+  m_SizeDelta: {x: 21.233307, y: 4.9262085}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1188936438
 MonoBehaviour:
@@ -2310,9 +2310,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1188936436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
   m_Padding:
     m_Left: 0
     m_Right: 0
@@ -2323,9 +2323,9 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 1
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!1 &1223494635
 GameObject:
@@ -2501,7 +2501,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 169.89786, y: 0}
+  m_SizeDelta: {x: 169.89786, y: 120.234665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333980880
 MonoBehaviour:
@@ -2759,7 +2759,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 169.89786, y: 0}
+  m_SizeDelta: {x: 169.89786, y: 120.234665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1371729373
 MonoBehaviour:

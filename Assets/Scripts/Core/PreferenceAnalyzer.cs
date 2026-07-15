@@ -174,7 +174,7 @@ public class PreferenceAnalyzer : MonoBehaviour
         if (!CanShowRecommendation())
             return ProfessionType.None;
 
-        float bestScore = -1;
+        float bestScore = -1f;
         ProfessionType bestType = ProfessionType.None;
 
         foreach (ProfessionType type in objectsCollected.Keys)
@@ -185,6 +185,30 @@ public class PreferenceAnalyzer : MonoBehaviour
             {
                 bestScore = score;
                 bestType = type;
+            }
+            else if (Mathf.Approximately(score, bestScore))
+            {
+                // Тайбрейкер — у кого больше абсолютных успехов
+                if (challengesSuccess[type] > challengesSuccess[bestType])
+                {
+                    bestType = type;
+                }
+                // Если и успехи равны — у кого выше процент
+                else if (challengesSuccess[type] == challengesSuccess[bestType])
+                {
+                    int totalCurrent = challengesSuccess[type] + challengesFailed[type];
+                    int totalBest = challengesSuccess[bestType] + challengesFailed[bestType];
+
+                    float rateCurrent = totalCurrent > 0
+                        ? (float)challengesSuccess[type] / totalCurrent
+                        : 0f;
+                    float rateBest = totalBest > 0
+                        ? (float)challengesSuccess[bestType] / totalBest
+                        : 0f;
+
+                    if (rateCurrent > rateBest)
+                        bestType = type;
+                }
             }
         }
 
@@ -199,9 +223,19 @@ public class PreferenceAnalyzer : MonoBehaviour
 
     public float CalculateScore(ProfessionType type)
     {
+        int successes = challengesSuccess[type];
+        int failures = challengesFailed[type];
+        int total = successes + failures;
+
+        // Процент успехов от 0 до 1 (0 если попыток не было)
+        float successRate = total > 0
+            ? (float)successes / total
+            : 0f;
+
         return objectsCollected[type]
              + portalsActivated[type] * 2
-             + challengesSuccess[type] * 3;
+             + challengesSuccess[type] * 3
+             + successRate * 5f;   // бонус за высокий % успехов
     }
 
     // =====================================================

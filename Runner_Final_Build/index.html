@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Ранер Карьеры | LunAV</title>
+  <style>
+    /* Сбрасываем дефолтные отступы и убираем лишние выделения на мобилках */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100dvh; /* Динамическая высота спасает от наездов плашек браузера */
+      background-color: #0b0b0e;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      color: #e2e8f0;
+      overflow: hidden; /* Предотвращаем паразитный скролл самого экрана */
+    }
+
+    /* Главный скроллируемый контейнер нашего лендинга */
+    #landing-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      height: 100dvh;
+      overflow-y: auto; /* Скролл разрешен только внутри лендинга */
+      background: radial-gradient(circle at top, #180f2b 0%, #08080a 100%);
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00ffcc;
+      text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Информационные карточки */
+    .info-card {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(15, 15, 22, 0.85);
+      border: 1px solid rgba(255, 0, 127, 0.25);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    .info-card h3 {
+      margin-top: 0;
+      color: #ff007f;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(255, 0, 127, 0.2);
+      padding-bottom: 8px;
+    }
+
+    .info-card p, .info-card ul {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #94a3b8;
+      margin: 10px 0 0 0;
+    }
+
+    .info-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .info-card ul li {
+      margin-bottom: 6px;
+    }
+    .info-card ul li::before {
+      content: "⚡ ";
+      color: #00ffcc;
+    }
+
+    /* Неоновая кнопка запуска */
+    .cta-button {
+      background: transparent;
+      border: 2px solid #ff007f;
+      color: #ff007f;
+      border-radius: 8px;
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 127, 0.3), inset 0 0 10px rgba(255, 0, 127, 0.2);
+      text-shadow: 0 0 8px #ff007f;
+      transition: all 0.2s ease-in-out;
+      margin-top: 15px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+    .cta-button:active {
+      transform: scale(0.97);
+      background: rgba(255, 0, 127, 0.1);
+      box-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
+    }
+
+    /* Контейнер для игры (жестко заперт в рамках dvh) */
+    #game-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100dvh; /* Гарантирует, что браузер не порежет края */
+      background: #000;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    #unity-canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    /* Экран загрузки с неоновым слайдером */
+    #loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0b0b0e;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      transition: opacity 0.5s ease;
+      padding: 24px;
+    }
+
+    /* Контейнер слайдера */
+    .progress-container {
+      width: 85%;
+      max-width: 380px;
+      height: 14px;
+      background: rgba(0, 255, 204, 0.05);
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      border-radius: 7px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.1);
+      margin-top: 25px;
+    }
+
+    /* Сам ползунок прогресса */
+    .progress-bar {
+      height: 100%;
+      width: 0%; /* Контролируется через JS */
+      background: linear-gradient(90deg, #00ffcc, #ff007f);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+      transition: width 0.15s ease-out;
+    }
+
+    .progress-text {
+      margin-top: 15px;
+      color: #00ffcc;
+      font-weight: bold;
+      font-size: 1rem;
+      text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+      font-family: monospace;
+    }
+
+    /* Стильная карточка предупреждения о сейвах */
+    .save-warning-box {
+      margin-top: 45px;
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255, 0, 127, 0.03);
+      border: 1px dashed rgba(255, 0, 127, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 0, 127, 0.05);
+    }
+
+    .save-warning-title {
+      color: #ff007f;
+      font-weight: bold;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .save-warning-desc {
+      color: #94a3b8;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ЛЕНДИНГ С ОПИСАНИЕМ -->
+  <div id="landing-page">
+    <div class="hero-title">Ранер Карьеры</div>
+
+    <div class="info-card">
+      <h3>О проекте</h3>
+      <p>Динамичный мобильный WebGL-раннер, разработанный для запуска непосредственно в браузере смартфона. Никаких скачиваний из сторов — игра загружается в один клик и адаптируется под вертикальный экран твоего устройства.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Разработчик</h3>
+      <p>Ангелина Лунина (LunAV) — профессиональный разработчик игр и преподаватель IT-дисциплин.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Технологии</h3>
+      <ul>
+        <li>Игровой движок: Unity 2D/3D</li>
+        <li>Язык логики: C# (ООП)</li>
+        <li>Платформа сборки: WebGL (HTML5, WebAssembly)</li>
+        <li>Облачный хостинг: Yandex Cloud Object Storage</li>
+      </ul>
+    </div>
+
+    <button class="cta-button" id="launch-btn">Играть во весь экран</button>
+  </div>
+
+  <!-- ИГРОВОЙ ЭКРАН -->
+  <div id="game-container">
+    <div id="loading-overlay">
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+      <div class="progress-text">Инициализация...</div>
+
+      <!-- Предупреждение об IndexedDB сохранениях -->
+      <div class="save-warning-box">
+        <div class="save-warning-title">⚠️ Внимание разработчикам и игрокам</div>
+        <p class="save-warning-desc">Ваш прогресс сохраняется автоматически в локальную базу данных браузера (IndexedDB). Очистка истории, кэша или использование приватных вкладок обнулит ваши сохранения!</p>
+      </div>
+    </div>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+  </div>
+
+  <!-- ПОДКЛЮЧАЕМ ЛОАДЕР ИЗ ТВОЕЙ ПАПКИ BUILD -->
+  <script src="Build/bin.loader.js"></script>
+  <script>
+    const launchBtn = document.getElementById('launch-btn');
+    const gameContainer = document.getElementById('game-container');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const progressBar = document.querySelector('.progress-bar');
+    const progressText = document.querySelector('.progress-text');
+
+    launchBtn.addEventListener('click', () => {
+      // 1. Показываем игровой экран поверх лендинга
+      gameContainer.style.display = 'block';
+
+      // 2. Инициализируем Unity-инстанс и передаем callback прогресса третьим аргументом
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        arguments: [],
+        dataUrl: "Build/bin.data.unityweb",
+        frameworkUrl: "Build/bin.framework.js.unityweb",
+        codeUrl: "Build/bin.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "LunAV",
+        productName: "Ранер Карьеры",
+        productVersion: "0.1.0",
+      }, (progress) => {
+        // progress возвращается в диапазоне от 0.0 до 1.0
+        const percentage = Math.round(progress * 100);
+        progressBar.style.width = percentage + "%";
+        progressText.innerText = "Загрузка ассетов: " + percentage + "%";
+      }).then((unityInstance) => {
+        // Прячем загрузочный экран, когда движок готов к бою
+        loadingOverlay.style.opacity = 0;
+        setTimeout(() => {
+          loadingOverlay.style.display = 'none';
+        }, 500);
+
+        // Принудительно разворачиваем на весь экран мобильного браузера
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+          unityInstance.SetFullscreen(1);
+        }
+      }).catch((message) => {
+        alert("Произошла ошибка при запуске игры: " + message);
+      });
+    });
+  </script>
+</body>
+</html>

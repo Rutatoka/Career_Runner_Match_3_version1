@@ -70,6 +70,9 @@ public static class SaveSystem
                 cache.lastSavedUtc = DateTime.UtcNow.ToString("o");
                 string json = JsonUtility.ToJson(cache, true);
                 File.WriteAllText(SaveFilePath, json);
+#if UNITY_WEBGL && !UNITY_EDITOR
+            PlayerPrefs.Save(); 
+#endif
             }
             catch (Exception e)
             {

@@ -47,8 +47,8 @@ public class DailyTasksManager : MonoBehaviour
         return new List<DailyTask>
         {
             new DailyTask("pick_items", "Собери предметы", "Подбери 5 предметов", 0, 5, 50),
-            new DailyTask("watch_ad", "Посмотри рекламу", "Посмотри 1 рекламный ролик", 0, 1, 25),
-            new DailyTask("earn_coins", "Заработай монет", "Собери 100 монет", 0, 100, 75),
+            new DailyTask("watch_ad", "Купи предмет в магазине", "Купить 2 предмета одежды или аксессуара", 0, 2, 50),
+            new DailyTask("earn_coins", "Заработай монет", "Собери 50 монет", 0, 50, 75),
         };
     }
 
